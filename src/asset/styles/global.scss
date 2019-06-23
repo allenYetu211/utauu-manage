@@ -1,0 +1,284 @@
+// @import 'global@assets/fonts/iconfont.css';
+
+body {
+  color: #75787c;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:global {
+  #root {
+    height: 100vh;
+  }
+  html {
+    .iconsvg {
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+
+    .ant-layout,
+    .ant-menu-inline {
+      height: 100%;
+    }
+
+    .ant-layout-header {
+      width: 100%;
+      height: auto;
+      line-height: normal !important;
+      background: #fff !important;
+      padding: 0;
+      position: relative;
+      &:after {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    .ant-layout-sider {
+      background-color: #f3f3f3 !important;
+    }
+
+    .form-label-left .ant-form-item-label {
+      text-align: left;
+    }
+    .ant-menu {
+      background-color: #f3f3f3 !important;
+      .ant-menu {
+        background-color: #f3f3f3 !important;
+      }
+    }
+
+    .ant-layout {
+      padding: 0 !important;
+      background: #fafafa;
+      .ant-layout-content {
+        & > div {
+          background-color: inherit;
+        }
+      }
+    }
+
+    // 表单 form-item
+    .ant-form-item {
+      margin-bottom: 16px;
+    }
+
+    .ant-select-selection__choice.zoom-leave {
+      display: none;
+    }
+
+    // 自定义组件样式
+
+    // 按钮
+    .ant-btn {
+      $mainColor: #52c9a0;
+      $mainDeepColor: #52c9a1;
+      $hoverColor: #5ddeb1;
+      $disabledColor: rgba(0, 0, 0, 0.25);
+      $disabledBgColor: #ededed;
+
+      padding: 0 16px;
+      font-size: 12px;
+      line-height: 20px;
+
+      &-loading {
+        padding-left: 29px;
+      }
+
+      // 二级按钮
+      &-default {
+        color: $mainColor;
+        background: #fafafa;
+        border-color: rgba(82, 201, 161, 0.3);
+
+        &:not([disabled]):hover {
+          background: rgba(82, 201, 160, 0.1);
+        }
+
+        &:not([disabled]):active,
+        &:not([disabled]):focus {
+          background: rgba(82, 201, 160, 0.2);
+        }
+
+        &:disabled,
+        &:disabled:hover {
+          background-color: $disabledBgColor;
+          border-color: $disabledBgColor;
+          color: $disabledColor;
+        }
+      }
+
+      // 一级按钮
+      &-primary {
+        text-shadow: none;
+        color: #fff;
+
+        &:not([disabled]):hover {
+          background: $hoverColor;
+          border-color: $hoverColor;
+          box-shadow: 0px 2px 6px 0px rgba(82, 201, 160, 0.5);
+        }
+
+        &:not([disabled]):active,
+        &:not([disabled]):focus {
+          background: $mainColor;
+          border-color: $mainColor;
+          box-shadow: 0px 2px 6px 0px rgba(82, 201, 160, 0.5);
+        }
+
+        &:disabled,
+        &:disabled:hover {
+          background-color: $disabledBgColor;
+          border-color: $disabledBgColor;
+          color: $disabledColor;
+        }
+      }
+
+      // 文字链接按钮
+      &-link {
+        border: none;
+        background-color: transparent;
+        box-shadow: none;
+
+        &:hover {
+          color: #5ddeb1;
+          background-color: transparent !important;
+        }
+
+        &:focus,
+        &:active,
+        &:disabled {
+          background-color: transparent !important;
+        }
+      }
+
+      // 取消按钮
+      &-cancel {
+        $cancelColor: rgba(0, 0, 0, 0.65);
+        border: none;
+        background-color: transparent;
+        box-shadow: none;
+        color: $cancelColor;
+
+        &[ant-click-animating-without-extra-node]::after {
+          border: 0 none;
+          opacity: 0;
+          animation: none 0 ease 0 1 normal;
+        }
+
+        &:focus,
+        &:active,
+        &:hover {
+          color: $cancelColor;
+          background-color: #f2f2f2 !important;
+        }
+
+        &:disabled {
+          color: $disabledColor;
+          background-color: transparent !important;
+        }
+      }
+
+      .anticon {
+        width: 12px;
+        height: 12px;
+        line-height: 12px;
+        .anticon-spin {
+          width: 12px;
+          height: 12px;
+        }
+      }
+
+      .iconfont {
+        font-size: 12px;
+        line-height: 12px;
+        margin-right: 4px;
+        text-align: center;
+      }
+
+      .anticon + span {
+        margin-left: 4px;
+      }
+    }
+
+    // 输入框
+    .ant-input {
+      $defaultColor: #ebebeb;
+
+      border-color: $defaultColor;
+
+      &:hover {
+        border-color: rgba(82, 201, 160, 1);
+      }
+      &:focus {
+        border-color: rgba(82, 201, 161, 0.5);
+      }
+    }
+
+    // 分页
+    .ant-pagination-item-active {
+      border: none !important;
+      background: none !important;
+    }
+    .ant-pagination-item {
+      border: none !important;
+      background: none !important;
+    }
+    // 选项卡
+    .ant-tabs-tab-active {
+      color: rgba(0, 0, 0, 0.65);
+    }
+    .ant-tabs-tab:hover {
+      color: #52c9a0;
+    }
+    // 面包屑
+    .ant-breadcrumb a {
+      color: #52c9a0 !important;
+    }
+    .ant-tree li .ant-tree-node-content-wrapper.ant-tree-node-selected {
+      color: #52c9a0;
+    }
+
+    // tabs
+    .formContainer {
+      .ant-tabs-tabpane {
+        height: calc(100vh - 280px);
+        overflow-x: hidden;
+        overflow-y: scroll;
+        margin-bottom: 20px;
+      }
+    }
+
+    .ant-carousel,
+    .slick-slide {
+      height: calc(100vh - 280px);
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
+  }
+  // 单行溢出
+  .lineWrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ant-checkbox-inner,
+  .ant-dropdown-menu {
+    background-color: #fafafa !important;
+  }
+  .ant-dropdown-menu-item,
+  .ant-dropdown-menu-submenu-title {
+    font-size: 13px !important;
+  }
+}
