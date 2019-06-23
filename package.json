@@ -70,7 +70,10 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "lint-staged": "lint-staged",
+    "format": "prettier 'src/**/*.js' 'src/**/*.jsx' 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.scss' 'src/**/*.css' --write",
+    "aof": "ali-oss-folder"
   },
   "husky": {
     "hooks": {
