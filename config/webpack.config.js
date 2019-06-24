@@ -113,7 +113,6 @@ module.exports = function(webpackEnv) {
 				loader: require.resolve(preProcessor),
 				options: {
 					sourceMap: isEnvProduction && shouldUseSourceMap,
-					implementation: require('sass'),
 					includePaths: [
 						// 支持绝对路径查找
 						path.resolve(__dirname, 'src'),

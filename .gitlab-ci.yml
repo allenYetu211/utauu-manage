@@ -2,6 +2,7 @@
 image: luojinghui/node-yarn:v1.0.0
 
 cache:
+  key: template
   paths:
   - node_modules/
 
