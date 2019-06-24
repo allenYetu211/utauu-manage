@@ -1,10 +1,14 @@
-@import '@/asset/styles/flex.scss';
+@import 'global/asset/styles/flex.scss';
+
+$var: 10px;
 
 .container {
 	@extend %flex-center;
 	flex-direction: column;
 
-	width: 100%;
+	width: calc(100% - #{$var});
 	height: 100%;
+	margin: 0 auto;
 	text-align: center;
+	background-color: linen;
 }

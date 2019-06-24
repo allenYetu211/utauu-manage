@@ -120,7 +120,8 @@
 		"modulePaths": [],
 		"moduleNameMapper": {
 			"^react-native$": "react-native-web",
-			"^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+			"^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
+			"^global(.*)$": "<rootDir>/src$1"
 		},
 		"moduleFileExtensions": ["web.js", "js", "web.ts", "ts", "web.tsx", "tsx", "json", "web.jsx", "jsx", "node"],
 		"watchPlugins": ["jest-watch-typeahead/filename", "jest-watch-typeahead/testname"]

@@ -1,8 +1,9 @@
 import React from 'react';
-import logo from '@/asset/images/xylink-logo.png';
+import logo from 'global/asset/images/xylink-logo.png';
 import style from './style/index.scss';
 
 const IndexView = () => {
+	console.log(123);
 	return (
 		<div className={style.container}>
 			<div className={style.containerLogo}>
