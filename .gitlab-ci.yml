@@ -1,0 +1,30 @@
+# image: kkarczmarczyk/node-yarn
+image: luojinghui/node-yarn:v1.0.0
+
+cache:
+  paths:
+  - node_modules/
+
+before_script:
+  - echo "set yarn config start"
+  - yarn config set registry http://10.80.84.176:4873/
+  - echo "set yarn config end"
+  - yarn install
+  - whoami
+stages:
+  - test
+  - dev
+
+test:
+  stage: test
+  tags:
+    - docker-deploy-test
+  script:
+   - yarn test
+
+build-dev:
+  stage: dev
+  tags:
+    - docker-deploy-test
+  script:
+    - yarn build
