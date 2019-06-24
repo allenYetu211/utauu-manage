@@ -4,12 +4,16 @@
   "tabWidth": 2,
   "useTabs": true,
   "singleQuote": true,
+  "jsxBracketSameLine": true,
+  "arrowParens": "always",
   "proseWrap": "never",
   "semi": true,
   "overrides": [
     {
       "files": ".prettierrc",
-      "options": { "parser": "json" }
+      "options": {
+        "parser": "json"
+      }
     }
   ]
 }

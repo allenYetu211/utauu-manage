@@ -13,7 +13,8 @@
     "revert",
     "ignore",
     "merge",
-    "other"
+    "other",
+    "config"
   ],
   "warnOnFail": false,
   "autoFix": false
