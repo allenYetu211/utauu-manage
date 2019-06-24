@@ -5771,7 +5771,7 @@ node-releases@^1.1.13, node-releases@^1.1.23:
   dependencies:
     semver "^5.3.0"
 
-"node-sass@npm:sass", sass@^1.21.0:
+"node-sass@npm:sass":
   version "1.21.0"
   resolved "http://10.80.84.176:4873/sass/-/sass-1.21.0.tgz#cc565444e27c2336746b09c45d6e8c46caaf6b04"
   dependencies:
@@ -8358,7 +8358,7 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "http://10.80.84.176:4873/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@3.5.2:
+typescript@^3.5.0:
   version "3.5.2"
   resolved "http://10.80.84.176:4873/typescript/-/typescript-3.5.2.tgz#a09e1dc69bc9551cadf17dba10ee42cf55e5d56c"
 

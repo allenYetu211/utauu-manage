@@ -44,7 +44,6 @@
 		"lint-staged": "^8.2.1",
 		"mini-css-extract-plugin": "0.5.0",
 		"node-sass": "npm:sass",
-		"sass": "^1.21.0",
 		"optimize-css-assets-webpack-plugin": "5.0.1",
 		"pnp-webpack-plugin": "1.2.1",
 		"postcss-flexbugs-fixes": "4.1.0",
@@ -63,7 +62,7 @@
 		"style-loader": "0.23.1",
 		"terser-webpack-plugin": "1.2.3",
 		"ts-pnp": "1.1.2",
-		"typescript": "3.5.2",
+		"typescript": "^3.5.2",
 		"url-loader": "1.1.2",
 		"validate-commit-msg": "^2.14.0",
 		"webpack": "4.29.6",
@@ -72,8 +71,7 @@
 		"workbox-webpack-plugin": "4.2.0"
 	},
 	"resolution": {
-		"node-sass": "npm:sass",
-		"sass": "^1.21.0"
+		"node-sass": "npm:sass"
 	},
 	"scripts": {
 		"start": "node scripts/start.js",
