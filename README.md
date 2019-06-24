@@ -14,6 +14,8 @@ Todo：
 - gitlab-ci 「demo文件」
 - eslint 基于 eslint-config-airbnb | tslint airbnb
 - antd webpack 配置 「按需加载、主题配置」
+- axions http配置
+- 各个环境打包
 
 - 多语言方案
 
