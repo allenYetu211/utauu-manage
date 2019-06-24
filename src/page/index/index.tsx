@@ -3,7 +3,9 @@ import logo from 'global/asset/images/xylink-logo.png';
 import style from './style/index.scss';
 
 const IndexView = () => {
-	console.log(123);
+	let a = 1;
+	console.log(123, a);
+
 	return (
 		<div className={style.container}>
 			<div className={style.containerLogo}>
