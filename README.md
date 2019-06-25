@@ -14,7 +14,7 @@ yarn build
 
 ### Function:
 
-1. Docker ci config
+1. Docker ci config: [Pipelines](http://10.172.94.171/frontend/xylink-cli-tpl/pipelines)
 2. Jest unit test
 3. Alias
 4. 多环境（代理）
@@ -23,6 +23,7 @@ yarn build
 7. Antd 按需加载
 8. webpack 优化
 9. Typescript
+10. Commit Hook Check
 
 ### Todo：
 
