@@ -28,6 +28,9 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 const postcssNormalize = require('postcss-normalize');
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -487,6 +490,7 @@ module.exports = function(webpackEnv) {
 			],
 		},
 		plugins: [
+			// new BundleAnalyzerPlugin({analyzerMode: 'static'}),
 			// Generates an `index.html` file with the <script> injected.
 			new HtmlWebpackPlugin(
 				Object.assign(
@@ -620,6 +624,19 @@ module.exports = function(webpackEnv) {
 					// The formatter is invoked directly in WebpackDevServerUtils during development
 					formatter: isEnvProduction ? typescriptFormatter : undefined,
 				}),
+			new webpack.DllReferencePlugin({
+				// 描述 lodash 动态链接库的文件内容
+				manifest: require('./public/vendor/vendor.manifest.json'),
+			}),
+			new AddAssetHtmlPlugin({
+				filepath: require.resolve(
+					path.resolve(__dirname, 'public/vendor/vendor.dll.js'),
+				),
+				includeSourcemap: false,
+				// 文件输出目录
+				outputPath: 'vendor',
+				publicPath: '/vendor',
+			}),
 		].filter(Boolean),
 		// Some libraries import Node modules but don't use them in the browser.
 		// Tell Webpack to provide empty mocks for them so importing them works.
