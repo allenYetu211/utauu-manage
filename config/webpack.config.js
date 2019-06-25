@@ -29,8 +29,7 @@ const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpack
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-	.BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const postcssNormalize = require('postcss-normalize');
 
@@ -491,7 +490,7 @@ module.exports = function(webpackEnv) {
 			],
 		},
 		plugins: [
-			new BundleAnalyzerPlugin(),
+			// new BundleAnalyzerPlugin({analyzerMode: 'static'}),
 			// Generates an `index.html` file with the <script> injected.
 			new HtmlWebpackPlugin(
 				Object.assign(

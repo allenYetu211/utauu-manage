@@ -35,4 +35,5 @@ build-dev:
   only:
     - master  
   script:
+    - yarn dll
     - yarn build
