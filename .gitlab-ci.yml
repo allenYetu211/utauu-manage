@@ -11,6 +11,7 @@ before_script:
   - echo "set yarn config end"
   - yarn install
   - whoami
+  
 stages:
   - test
   - dev
@@ -19,12 +20,19 @@ test:
   stage: test
   tags:
     - docker-deploy-test
+  only:
+    - master
   script:
    - yarn test
 
 build-dev:
   stage: dev
+  environment:
+    # 指定当前job的运行环境，$CI_COMMIT_REF_NAME代表当前分支名
+    name: dev/$CI_COMMIT_REF_NAME
   tags:
     - docker-deploy-test
+  only:
+    - master  
   script:
     - yarn build
