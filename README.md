@@ -35,6 +35,4 @@ yarn build
 
 ### 配置文档
 
-test
-
 [直升机](http://172.20.33.81:8090/pages/viewpage.action?pageId=10225484)
