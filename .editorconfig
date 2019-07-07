@@ -1,12 +1,23 @@
+# root = true
+
+# [*]
+# indent_size = 2
+# end_of_line = lf
+# charset = utf-8
+# indent_style = tab
+# trim_trailing_whitespace = true
+# insert_final_newline = true
+# tab_width = 4
+# [*.md]
+# # trim_trailing_whitespace = false
+
+
 root = true
 
 [*]
-indent_style = space
-indent_size = 2
-end_of_line = lf
 charset = utf-8
-trim_trailing_whitespace = true
+indent_style = tab //使用制表符
+indent_size = 4 //4个空格为一个缩进
+end_of_line = lf
 insert_final_newline = true
-tab_width = 4
-[*.md]
-trim_trailing_whitespace = false
+trim_trailing_whitespace = true
