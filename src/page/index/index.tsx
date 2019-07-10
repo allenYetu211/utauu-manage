@@ -2,7 +2,11 @@ import React from 'react';
 import logo from 'global/asset/images/xylink-logo.png';
 import TitleComponents from 'global/components/title/index';
 
+import Action from 'global/utils/utils';
+
 import style from './style/index.scss';
+
+console.log('Action', Action);
 
 const IndexView = () => {
 	return (
