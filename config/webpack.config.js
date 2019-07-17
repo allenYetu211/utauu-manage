@@ -635,7 +635,7 @@ module.exports = function(webpackEnv) {
 				includeSourcemap: false,
 				// 文件输出目录
 				outputPath: 'vendor',
-				publicPath: '/vendor',
+				publicPath: './vendor',
 			}),
 		].filter(Boolean),
 		// Some libraries import Node modules but don't use them in the browser.

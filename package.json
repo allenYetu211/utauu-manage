@@ -159,6 +159,7 @@
 			"react-app"
 		]
 	},
+	"homepage": ".",
 	"devDependencies": {
 		"eslint": "^6.0.1",
 		"eslint-config-airbnb": "^17.1.1",
