@@ -2,7 +2,9 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"global/*": ["./src/*"]
+			"globals/*": ["./src/*"],
+			"index/*": ["./src/page/index/*"],
+			"nemoLive/*": ["./src/page/nemoLive/*"]
 		},
 		"experimentalDecorators": true
 	}

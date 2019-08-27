@@ -1,0 +1,15 @@
+export default {
+	common_ok: '確定',
+	common_live: '直播',
+	common_new_live: '新建直播',
+	common_start_live: '開始直播',
+	prompt_noInAddressBook: '加入通訊錄之後才可以新建直播活動',
+	createLive_title: '使用手機APP掃碼，新建直播活動',
+	createLive_desc: '進入app主界面，點擊右上角+，點擊“掃一掃”',
+	liveDetails_scan: '手機掃描二維碼',
+	liveDetails_share: '隨時分享直播頁面',
+	liveDetails_time: '時間',
+	liveDetails_site: '地點',
+	liveDetails_title: '標題',
+	liveDetails_introduce: '介紹',
+};

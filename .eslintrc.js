@@ -1,9 +1,9 @@
 module.exports = {
 	extends: [
-		'eslint-config-airbnb',
-		'eslint:recommended',
+		// 'eslint-config-airbnb',
+		// 'eslint:recommended',
 		// 'plugin:@typescript-eslint/recommended',
-		'plugin:prettier/recommended',
+		// 'plugin:prettier/recommended',
 	],
 	env: {
 		browser: true,
@@ -33,6 +33,12 @@ module.exports = {
 		'react/destructuring-assignment': 'off',
 		'react/jsx-indent': 'off',
 		'prettier/prettier': 'error',
+		'react/jsx-tag-spacing': [
+			'error',
+			{
+				beforeSelfClosing: 'allow',
+			},
+		],
 
 		'jsx-a11y/click-events-have-key-events': 0,
 		'jsx-a11y/no-noninteractive-element-interactions': 0,
@@ -41,7 +47,7 @@ module.exports = {
 		'import/no-extraneous-dependencies': 0,
 		'import/prefer-default-export': 0,
 
-		indent: [2, 'tab'],
+		// indent: [2, 'tab'],
 		'no-tabs': 0,
 		'prettier/prettier': 0,
 		'react/jsx-indent-props': 0,
