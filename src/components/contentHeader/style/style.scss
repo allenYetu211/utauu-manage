@@ -1,0 +1,23 @@
+@import 'globals/asset/style/extendsFlex.scss';
+
+.contentHeader {
+	color: #fff;
+	opacity: 0.5;
+	vertical-align: top;
+	height: 20px;
+	margin: 15px 0;
+	@extend %flex-between-center;
+	h1 {
+		font-size: 20px;
+	}
+}
+
+.header-title-container {
+	@extend %flex-start;
+}
+.history-go-back {
+	cursor: pointer;
+	padding: 0 20px;
+}
+.cardContainer {
+}

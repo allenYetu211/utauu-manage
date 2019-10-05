@@ -1,0 +1,13 @@
+@import 'globals/asset/style/extendsFlex.scss';
+@import 'globals/asset/style/variable.scss';
+
+.footer-component {
+	@extend %flex-between-end;
+	border-top: 1px solid $defaultLineColor;
+}
+
+.footer-button-component {
+	@extend %flex-between-center;
+	padding: 0 20px;
+	margin-top: 10px;
+}

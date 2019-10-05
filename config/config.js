@@ -1,6 +1,6 @@
 const path = require('path');
 
 exports.alias = {
-	global: path.resolve(__dirname, '../src'),
+	globals: path.resolve(__dirname, '../src'),
 	'react-native': 'react-native-web',
 };

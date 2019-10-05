@@ -1,0 +1,23 @@
+@import 'globals/asset/style/extendsFlex.scss';
+@import 'globals/asset/style/variable.scss';
+
+.tags-component {
+	// margin-bottom: 20px;
+}
+
+.content-bottom-margin {
+	margin-bottom: 20px;
+}
+.labelItem {
+	@extend %flex-center;
+	margin-bottom: 20px;
+	& > span {
+		display: block;
+		width: 75px;
+		text-align: right;
+		padding-right: 15px;
+	}
+	input {
+		flex: 1;
+	}
+}

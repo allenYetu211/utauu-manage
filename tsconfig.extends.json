@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"global/*": ["./src/*"]
+			"globals/*": ["./src/*"]
 		},
 		"experimentalDecorators": true
 	}

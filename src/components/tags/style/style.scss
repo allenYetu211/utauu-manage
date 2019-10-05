@@ -1,0 +1,21 @@
+@import 'globals/asset/style/extendsFlex.scss';
+@import 'globals/asset/style/variable.scss';
+
+.itemContainer {
+	flex: 1;
+	@extend %flex-start-center;
+}
+
+.tag-item {
+	padding: 3px 6px;
+	margin-right: 10px;
+	border-radius: 2px;
+	background-color: #1b1d1e;
+	color: #fff;
+	transition: all ease 0.3s;
+	cursor: pointer;
+	&.active,
+	&:hover {
+		background-color: $bgcolor5;
+	}
+}

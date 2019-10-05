@@ -1,0 +1,164 @@
+@import 'globals/asset/style/variable.scss';
+@import 'globals/asset/style/extendsFlex.scss';
+
+.view-full-screen {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 100vh !important;
+}
+
+.markdown-editor {
+	width: 100%;
+	height: calc(100vh - 390px);
+	@extend %flex-center;
+	flex-direction: column;
+
+	.markdown-menu {
+		width: 100%;
+		ul {
+			@extend %flex-start-center;
+			background-color: $bgcolor2;
+		}
+	}
+	.markdown-container {
+		width: 100%;
+		height: 100%;
+		@extend %flex-center;
+		& > div {
+			height: 100%;
+			overflow: auto;
+			flex: 1;
+		}
+	}
+
+	:global {
+		.CodeMirror {
+			background-color: $textColor;
+			height: 100%;
+		}
+		.CodeMirror-linenumbers {
+			color: #fff;
+			background-color: $sidebar;
+		}
+		.CodeMirror-code {
+			> div {
+				line-height: 18px;
+			}
+		}
+	}
+
+	.marked {
+		display: none;
+		height: 100%;
+		border-left: 1px solid $defaultLineColor;
+		background-color: $textColor;
+		padding-left: 5px;
+		&.show {
+			display: block;
+		}
+		a {
+			color: $bgcolor5;
+			font-weight: bold;
+			margin: 0 1px;
+
+			&:hover {
+				text-decoration: underline !important;
+			}
+		}
+
+		img {
+			max-width: 80%;
+			// margin: 0 auto;
+			display: block;
+			text-align: center;
+			border-radius: 2px;
+		}
+
+		code {
+			padding: 3px 5px;
+			margin: 0 5px;
+			border-radius: 2px;
+			background-color: rgba(197, 197, 197, 0.4);
+		}
+
+		p {
+			line-height: 18px;
+			text-indent: 20px;
+			margin-bottom: 10px;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			margin: 15px 0;
+			padding-left: 0;
+			line-height: 18px;
+			font-weight: 700;
+			text-indent: 0;
+		}
+
+		h1,
+		h2 {
+			padding-bottom: 15px;
+			border-bottom: 1px solid rgba(197, 197, 197, 0.4);
+		}
+
+		blockquote {
+			margin: 12px 0;
+			text-indent: 0;
+			background-color: rgba(197, 197, 197, 0.4);
+			border-left: 5px solid #aaa;
+			padding: 5px 10px;
+			padding-left: 15px;
+
+			p {
+				text-indent: 0em;
+				margin: 0;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+
+		ul {
+			list-style-type: square;
+		}
+
+		ul,
+		ol {
+			> li {
+				line-height: 18px;
+				padding: 5px 10px;
+
+				// &:hover {
+				//   background-color: rgba(230, 230, 230, 0.7);
+				// }
+
+				> ul {
+					&:last-child {
+						margin-bottom: 0;
+					}
+				}
+			}
+		}
+
+		pre {
+			margin-bottom: 10px;
+
+			> code {
+				margin: 0;
+				padding: 10px;
+				line-height: 16px;
+				background-color: rgba(0, 0, 0, 0.8);
+				position: relative;
+				display: block;
+				color: rgba(255, 255, 255, 0.87);
+			}
+		}
+	}
+}

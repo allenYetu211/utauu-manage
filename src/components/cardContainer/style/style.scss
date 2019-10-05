@@ -1,0 +1,21 @@
+.cardContainer {
+	border-radius: 1px;
+}
+
+.cardChilderContainer {
+	background-color: #505050;
+	padding: 15px;
+}
+
+.cardTitle {
+	background-color: #1c1d1f;
+	color: #fff;
+	padding: 5px 15px;
+}
+
+.cardFullContainer {
+	height: calc(100vh - 88px);
+	.cardChilderContainer {
+		height: 100%;
+	}
+}

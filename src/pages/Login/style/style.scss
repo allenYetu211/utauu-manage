@@ -1,0 +1,45 @@
+@import 'globals/asset/style/extendsFlex.scss';
+@import 'globals/asset/style/variable.scss';
+
+.login-container {
+	@extend %flex-column-center;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	z-index: 1;
+	background-color: $contentBgColor;
+}
+
+.dialog-container {
+	width: 450px;
+	padding: 30px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+
+	border: 1px solid $highlightBgColor;
+	text-align: center;
+}
+
+.dialog-line {
+	@extend %flex-center;
+	margin-bottom: 15px;
+	span {
+		width: 50px;
+	}
+	input {
+		flex: 1;
+		line-height: 40px;
+		border: 3px;
+		padding: 5px;
+	}
+}
+
+.login-button {
+	width: 60%;
+	line-height: 40px;
+	margin: 15px auto 0;
+}

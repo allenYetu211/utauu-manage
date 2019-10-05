@@ -1,0 +1,59 @@
+@import 'globals/asset/style/extendsFlex.scss';
+@import 'globals/asset/style/variable.scss';
+
+.article-container {
+	@extend %flex-center;
+	align-items: flex-start;
+	.edit-container {
+		flex: 1;
+	}
+	.state-container {
+		width: 300px;
+		margin-left: 15px;
+	}
+}
+
+.labelItem {
+	@extend %flex-center;
+	margin-bottom: 20px;
+	& > span {
+		display: block;
+		width: 100px;
+		text-align: right;
+		padding-right: 15px;
+	}
+
+	input,
+	textarea,
+	.itemContainer {
+		flex: 1;
+	}
+}
+
+.itemContainer {
+	@extend %flex-start-center;
+}
+
+.labelItemStart {
+	@extend .labelItem;
+	align-items: start;
+	span {
+		padding-top: 5px;
+	}
+}
+
+.basicsInfoContainer {
+	@extend %flex-center;
+	flex-direction: column;
+	height: 100%;
+	& > div {
+		width: 100%;
+	}
+	& > div:last-child {
+		flex: 1;
+		.labelItem,
+		.itemContainer {
+			height: 100%;
+		}
+	}
+}

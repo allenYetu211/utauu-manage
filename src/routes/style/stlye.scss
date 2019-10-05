@@ -1,0 +1,46 @@
+@import 'globals/asset/style/extendsFlex.scss';
+@import 'globals/asset/style/variable.scss';
+.route-content {
+	@extend %flex-center;
+}
+
+.route-side {
+	@extend %flex-start-center;
+	flex-direction: column;
+	width: 180px;
+	height: 100vh;
+	border-right: 1px solid $defaultLineColor;
+}
+
+.route-container {
+	height: 100vh;
+	overflow-y: auto;
+	flex: 1;
+	// background-color:$contentBgColor;
+}
+
+.side-parent-container {
+	width: 100%;
+	& > li {
+		height: 50px;
+		line-height: 50px;
+		padding: 0 15px;
+		border-bottom: 1px solid $defaultLineColor;
+		& > a {
+			display: block;
+		}
+		&.active {
+			background-color: $highlightBgColor;
+		}
+	}
+}
+
+.side-child-container {
+	display: none;
+	li {
+		padding-left: 15px;
+	}
+	&.side-child-show {
+		display: block;
+	}
+}

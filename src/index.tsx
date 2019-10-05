@@ -1,14 +1,24 @@
+/**
+ * @file:   入口文件
+ * @author:  Allen OYang https://github.com/allenYetu211
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import IndexView from 'global/page/index';
+import { Provider } from 'mobx-react';
+import store from 'globals/store';
+import './asset/style/global.scss';
 import * as serviceWorker from './serviceWorker';
+import BrowserRouters from './routes/index';
 
-// 兼容IE9-11版本
-import 'react-app-polyfill/ie9';
-import 'react-app-polyfill/stable';
+const appStore = {
+	store,
+};
 
-import 'global/asset/styles/global.scss';
-
-ReactDOM.render(<IndexView />, document.getElementById('root'));
+ReactDOM.render(
+	<Provider {...appStore}>
+		<BrowserRouters />
+	</Provider>,
+	document.getElementById('root') as HTMLElement,
+);
 
 serviceWorker.unregister();
