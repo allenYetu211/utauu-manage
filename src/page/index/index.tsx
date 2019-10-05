@@ -1,11 +1,22 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import IndexView from 'index/app/index/demo';
+import logo from 'global/asset/images/xylink-logo.png';
+import TitleComponents from 'global/components/title/index';
 
-// 兼容IE9-11版本
-import 'react-app-polyfill/ie9';
-import 'react-app-polyfill/stable';
+import Action from 'global/utils/utils';
 
-import 'globals/asset/styles/global.scss';
+import style from './style/index.scss';
 
-ReactDOM.render(<IndexView />, document.getElementById('root'));
+console.log('Action', Action);
+
+const IndexView = () => {
+	return (
+		<div className={style.container}>
+			<div className={style.containerLogo}>
+				<img src={logo} alt="xylink" />
+			</div>
+			<TitleComponents title="TitleComponents" text="center" />
+			<p className={style.containerView}>xylink View</p>
+		</div>
+	);
+};
+export default IndexView;
