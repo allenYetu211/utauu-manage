@@ -73,7 +73,6 @@ export default class BrowserRouters extends React.Component<any, IState> {
 
 	public render() {
 		const { parentContainer, targetCount } = this.state;
-		console.log('props::', this.props);
 		return (
 			<Router>
 				<div className={style.routeContent}>

@@ -3,128 +3,219 @@
  * @file: 文章标签
  * @author:  Allen OYang https://github.com/allenYetu211
  */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ContentHeaderComponent from 'globals/components/contentHeader/index';
 import CardContainerComponent from 'globals/components/cardContainer/index';
 import FooterButttonComponent from 'globals/components/footerButton';
 import TagsComponent from 'globals/components/tags';
-import { postCreateTag, deleteTag } from 'globals/action/httpaction';
+import { ITags } from 'globals/interfaces/interface';
+import {
+	postCreateTag,
+	deleteTag,
+	getTagsAll,
+} from 'globals/action/httpaction';
+import { Input, message } from 'antd';
 import { observer, inject } from 'mobx-react';
 
 import style from './style/style.scss';
 
 interface IState {
 	selected: number[];
+	tags: ITags[];
 	tagType: string;
 	tagMsg: string;
 }
-@inject('store')
-@observer
-export default class ArticleTagPages extends React.Component<any, IState> {
-	constructor(props: any) {
-		super(props);
-		this.state = {
-			selected: [],
-			tagType: '',
-			tagMsg: '',
-		};
-	}
+
+export const ArticleTagPages = () => {
+	const [selected, setSelected] = useState<number[]>([]);
+	const [tags, setTags] = useState<ITags[]>([]);
+	const [tagType, setTagType] = useState<string>('');
+	const [tagMsg, setTagMsg] = useState<string>('');
+
+	// 获取全部标签
+	const getTagsAllFc = async () => {
+		const tagResult: any = await getTagsAll();
+		setTags(tagResult);
+	};
 
 	// 处理tags
-	public onChangeSelected = (selecteds: number[]) => {
-		this.setState({ selected: selecteds });
+	const onChangeSelected = (selecteds: number[]) => {
+		setSelected(selecteds);
 	};
 
 	// 删除标签确认事件
-	public onDeleteOkTag = async () => {
-		const { selected } = this.state;
-		const { tags } = this.props.store;
+	const onDeleteOkTag = async () => {
 		if (selected.length < 0) {
 			return;
 		}
-		await deleteTag(tags[selected[0]]._id);
-		this.setState({ selected: [] });
+		try {
+			await deleteTag(tags[selected[0]]._id);
+			setSelected([]);
+
+			await getTagsAllFc();
+		} catch (e) {
+			message.error({
+				content: '删除失败',
+			});
+		}
 	};
 
 	// 删除标签取消事件
-	public onDeleteCencelTag = () => {
-		console.log('onDeleteCencelTag');
-	};
+	//  const onDeleteCencelTag = () => {
+	// 	console.log('onDeleteCencelTag');
+	// };
 
 	// 创建标签
-	public onCreateTagOk = async () => {
-		const { tagType, tagMsg } = this.state;
-		if (!tagType || !tagMsg) {
-			return;
-		}
-		const result = await postCreateTag({ msg: tagMsg, type: tagType });
-		if (result) {
-			this.setState({ tagType: '', tagMsg: '' });
-		} else {
-			console.log('Create Tags Error');
+	const onCreateTagOk = async () => {
+		try {
+			await postCreateTag({ msg: tagMsg });
+			setTagMsg('');
+			await getTagsAllFc();
+		} catch (e) {
+			console.log('Create Tags Error', e);
 		}
 	};
 
-	// 新建标签类型
-	public onChangeTagType = (e: any) => {
-		this.setState({ tagType: e.target.value });
-	};
+	useEffect(() => {
+		getTagsAllFc();
+	}, []);
+
+	// // 新建标签类型
+	// public onChangeTagType = (e: any) => {
+	// 	this.setState({ tagMsg: e.target.value });
+	// };
 
 	// 新建标签描述
-	public onChangeTagMsg = (e: any) => {
-		this.setState({ tagMsg: e.target.value });
+	const onChangeTagMsg = (e: any) => {
+		setTagMsg(e.target.value);
 	};
 
-	public render() {
-		const { selected, tagType, tagMsg } = this.state;
-		const { tags } = this.props.store;
-		return (
-			<div>
-				<ContentHeaderComponent hideGoBack title="标签管理" />
+	return (
+		<div>
+			<ContentHeaderComponent hideGoBack title="标签管理" />
 
-				<div className={style.contentBottomMargin}>
-					<CardContainerComponent cardTitlt="全部">
-						<div className={style.contentBottomMargin}>
-							<TagsComponent
-								onChangeSelected={this.onChangeSelected}
-								selected={selected}
-								tags={tags}
-								isHighlight
-							/>
-						</div>
-						<FooterButttonComponent ok={this.onDeleteOkTag} />{' '}
-						{/* cancel={this.onDeleteCencelTag} */}
-					</CardContainerComponent>
-				</div>
-
-				<div>
-					<CardContainerComponent cardTitlt="新建标签">
-						<div className={style.contentBottomMargin}>
-							<div className={style.labelItem}>
-								<span>类型</span>
-								<input
-									className="default__style"
-									value={tagType}
-									onChange={this.onChangeTagType}
-									type="text"
-								/>
-							</div>
-
-							<div className={style.labelItem}>
-								<span>描述</span>
-								<input
-									className="default__style"
-									value={tagMsg}
-									onChange={this.onChangeTagMsg}
-									type="text"
-								/>
-							</div>
-						</div>
-
-						<FooterButttonComponent ok={this.onCreateTagOk} />
-					</CardContainerComponent>
-				</div>
+			<div className={style.contentBottomMargin}>
+				<CardContainerComponent cardTitlt="全部">
+					<div className={style.contentBottomMargin}>
+						<TagsComponent
+							onChangeSelected={onChangeSelected}
+							selected={selected}
+							tags={tags}
+							isHighlight
+						/>
+					</div>
+					<FooterButttonComponent ok={onDeleteOkTag} okText="删除" />
+					{/* cancel={this.onDeleteCencelTag} */}
+				</CardContainerComponent>
 			</div>
-		);
-	}
-}
+
+			<div>
+				<CardContainerComponent cardTitlt="新建标签">
+					<Input
+						value={tagMsg}
+						onChange={onChangeTagMsg}
+						placeholder="添加新标签"
+					/>
+
+					<FooterButttonComponent ok={onCreateTagOk} />
+				</CardContainerComponent>
+			</div>
+		</div>
+	);
+};
+
+export default ArticleTagPages;
+
+// @inject('store')
+// @observer
+// export default class ArticleTagPages extends React.Component<any, IState> {
+// 	constructor(props: any) {
+// 		super(props);
+// 		this.state = {
+// 			selected: [],
+// 			tagType: '',
+// 			tagMsg: '',
+// 			tags: []
+// 		};
+// 	}
+
+// 	// 处理tags
+// 	public onChangeSelected = (selecteds: number[]) => {
+// 		this.setState({ selected: selecteds });
+// 	};
+
+// 	// 删除标签确认事件
+// 	public onDeleteOkTag = async () => {
+// 		const { selected } = this.state;
+// 		const { tags } = this.props.store;
+// 		if (selected.length < 0) {
+// 			return;
+// 		}
+// 		await deleteTag(tags[selected[0]]._id);
+// 		this.setState({ selected: [] });
+// 	};
+
+// 	// 删除标签取消事件
+// 	public onDeleteCencelTag = () => {
+// 		console.log('onDeleteCencelTag');
+// 	};
+
+// 	// 创建标签
+// 	public onCreateTagOk = async () => {
+// 		const { tagMsg } = this.state;
+// 		try {
+// 			await postCreateTag({ msg: tagMsg})
+// 			const tagResult: any = await getTagsAll()
+// 			this.setState({ tagMsg: '' , tags: tagResult});
+// 		} catch(e) {
+// 			console.log('Create Tags Error', e);
+// 		}
+// 	};
+
+// 	// // 新建标签类型
+// 	// public onChangeTagType = (e: any) => {
+// 	// 	this.setState({ tagMsg: e.target.value });
+// 	// };
+
+// 	// 新建标签描述
+// 	public onChangeTagMsg = (e: any) => {
+// 		this.setState({ tagMsg: e.target.value });
+// 	};
+
+// 	public render() {
+// 		const { selected, tagType, tagMsg } = this.state;
+// 		const { tags } = this.props.store;
+// 		return (
+// 			<div>
+// 				<ContentHeaderComponent hideGoBack title="标签管理" />
+
+// 				<div className={style.contentBottomMargin}>
+// 					<CardContainerComponent cardTitlt="全部">
+// 						<div className={style.contentBottomMargin}>
+// 							<TagsComponent
+// 								onChangeSelected={this.onChangeSelected}
+// 								selected={selected}
+// 								tags={this.state.tags}
+// 								isHighlight
+// 							/>
+// 						</div>
+// 						<FooterButttonComponent ok={this.onDeleteOkTag} />{' '}
+// 						{/* cancel={this.onDeleteCencelTag} */}
+// 					</CardContainerComponent>
+// 				</div>
+
+// 				<div>
+// 					<CardContainerComponent cardTitlt="新建标签">
+
+// 						<Input
+// 						 value={tagMsg}
+// 						 onChange={this.onChangeTagMsg}
+// 						 placeholder="添加新标签" />
+
+// 						<FooterButttonComponent ok={this.onCreateTagOk} />
+// 					</CardContainerComponent>
+// 				</div>
+// 			</div>
+// 		);
+// 	}
+// }

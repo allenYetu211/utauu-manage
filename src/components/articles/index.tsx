@@ -18,11 +18,11 @@ const ArticleContainer = (props: IProps) => {
 	return (
 		<div className={style.articleContainer}>
 			{props.article.map((item: IArticle, key: number) => {
-				const skipPath = `/article-detail/${item._id}`;
+				const skipPath = `/ArticleDetail/${item._id}`;
 				return (
 					<div className={style.articleItem} key={key}>
 						<h1 className={style.articleTitle}>
-							<Link to={skipPath}> title {item.title}</Link>
+							<Link to={skipPath}>{item.title}</Link>
 						</h1>
 
 						<div className={style.articleIntroduce}>
@@ -36,32 +36,3 @@ const ArticleContainer = (props: IProps) => {
 };
 
 export default ArticleContainer;
-
-// class ArticleContainer extends React.Component<IProps, any> {
-
-// 	constructor(props: any) {
-// 		super(props);
-// 	}
-
-// 	public render() {
-// 		const { article } = this.props;
-// 		return (
-// 			<div className={style.articleContainer}>
-// 				{article.map((item: IArticle, key: number) => {
-// 					const skipPath = `/article-detail/${item._id}`;
-// 					return (
-// 						<div className={style.articleItem} key={key}>
-// 							<h1 className={style.articleTitle}>
-// 								<Link to={skipPath}> title {item.title}</Link>
-// 							</h1>
-
-// 							<div className={style.articleIntroduce}>
-// 								introduce {item.introduce}
-// 							</div>
-// 						</div>
-// 					);
-// 				})}
-// 			</div>
-// 		);
-// 	}
-// }

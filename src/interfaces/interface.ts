@@ -15,6 +15,5 @@ export interface IArticle {
 
 export interface ITags {
 	readonly msg: string;
-	readonly type: string[];
 	readonly _id: number;
 }

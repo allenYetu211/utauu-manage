@@ -8,6 +8,7 @@ import style from './style/style.scss';
 interface IProps {
 	ok: () => void;
 	cancel?: () => void;
+	okText?: string;
 }
 
 const FooterButtonComponent = (props: IProps) => {
@@ -15,7 +16,7 @@ const FooterButtonComponent = (props: IProps) => {
 		<div className={style.footerComponent}>
 			<div className={style.footerButtonComponent}>
 				<button type="button" onClick={props.ok}>
-					确认
+					{props.okText ? props.okText : '确认'}
 				</button>
 				{props.cancel && (
 					<button type="button" onClick={props.cancel}>

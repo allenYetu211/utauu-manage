@@ -1,7 +1,10 @@
 import React from 'react';
 import { ITags } from 'globals/interfaces/interface';
 import cn from 'classnames';
+import { Tag } from 'antd';
 import style from '../style/style.scss';
+
+const { CheckableTag } = Tag;
 
 interface IProps {
 	tag: ITags;
@@ -9,22 +12,18 @@ interface IProps {
 	isSelected: boolean;
 	onChangeSelected: (index: number) => void;
 }
-export default class TagsComponents extends React.Component<IProps, any> {
-	public onChangeSelected = () => {
-		const { onChangeSelected, index } = this.props;
-		onChangeSelected(index);
-	};
 
-	public render() {
-		const { tag, isSelected } = this.props;
-		return (
-			<div
-				onClick={this.onChangeSelected}
-				className={cn(style.tagItem, {
-					[style.active]: isSelected,
-				})}>
-				{tag.msg}
-			</div>
-		);
-	}
-}
+const TagsComponents = (props: IProps) => {
+	return (
+		<CheckableTag
+			className={style.tagItem}
+			onChange={() => {
+				props.onChangeSelected(props.index);
+			}}
+			checked={props.isSelected}>
+			{props.tag.msg}
+		</CheckableTag>
+	);
+};
+
+export default TagsComponents;

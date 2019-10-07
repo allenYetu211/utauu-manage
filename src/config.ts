@@ -1,3 +1,3 @@
 export const config = {
-	origin: 'http://localhost:3000/',
+	origin: 'http://localhost:7001/',
 };

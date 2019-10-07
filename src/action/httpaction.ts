@@ -3,13 +3,13 @@ import { ICreateArticle, ICreateTag } from 'globals/interfaces/http.interface';
 import store from 'globals/store';
 // 获取全部文章
 export const getArticleAll = () => {
-	return HTTP_CLIENT.get({ url: 'article' });
+	return HTTP_CLIENT.get({ url: 'getArticle' });
 };
 
 // 获取分类标签
 export const getTagClassArticle = (tag: string) => {
 	return HTTP_CLIENT.get({
-		url: 'article',
+		url: 'getTagClassArticle',
 		param: {
 			tags: tag,
 		},
@@ -17,30 +17,29 @@ export const getTagClassArticle = (tag: string) => {
 };
 
 // 获取发布文章
-export const getPublishClassArticle = (publishState: boolean) => {
+export const getPublishClassArticle = () => {
 	return HTTP_CLIENT.get({
-		url: 'article',
-		param: {
-			publishState,
-		},
+		url: 'getPublishArticle',
 	});
 };
 
 // 获取文章详情
 export const getArticleDetail = (id: number) => {
-	return HTTP_CLIENT.get({ url: `article/${id}` });
+	return HTTP_CLIENT.get({ url: `getArticleDetail/${id}` });
 };
 
 // 获取全部标签
 export const getTagsAll = () => {
-	store.setTags(HTTP_CLIENT.get({ url: 'tag' }));
+	const result = HTTP_CLIENT.get({ url: 'getTagAll' });
+	store.setTags(result);
+	return result;
 	// store.tags = HTTP_CLIENT.get({ url: 'tag' });
 };
 
 // 保存编辑文章
 export const putEditArticle = (data: ICreateArticle, id: number) => {
 	return HTTP_CLIENT.put({
-		url: `article`,
+		url: `updateArticle`,
 		data,
 		param: {
 			articleID: id,
@@ -50,27 +49,20 @@ export const putEditArticle = (data: ICreateArticle, id: number) => {
 
 // 新建文章存储文章
 export const postCreateArticle = (data: ICreateArticle) => {
-	return HTTP_CLIENT.post({ url: 'article', data });
+	return HTTP_CLIENT.post({ url: 'createArticle', data });
 };
 
 // 新建标签
-export const postCreateTag = (data: ICreateTag) => {
-	try {
-		HTTP_CLIENT.post({ url: 'tag', data });
-		getTagsAll();
-		return true;
-	} catch (e) {
-		return false;
-	}
+export const postCreateTag = async (data: ICreateTag) => {
+	await HTTP_CLIENT.post({ url: 'createTag', data });
 };
 
 // 删除标签
-export const deleteTag = (_id: number) => {
-	HTTP_CLIENT.delete({
-		url: 'tag',
+export const deleteTag = async (_id: number) => {
+	await HTTP_CLIENT.delete({
+		url: 'deleteTag',
 		param: {
 			tagID: _id,
 		},
 	});
-	getTagsAll();
 };

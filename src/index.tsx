@@ -8,7 +8,8 @@ import { Provider } from 'mobx-react';
 import store from 'globals/store';
 import './asset/style/global.scss';
 import * as serviceWorker from './serviceWorker';
-import BrowserRouters from './routes/index';
+// import BrowserRouters from './routes/index';
+import BrowserRouters from './router/index';
 
 const appStore = {
 	store,

@@ -9,13 +9,14 @@
 	@extend %flex-between-center;
 	h1 {
 		font-size: 20px;
+		margin-bottom: 0;
 	}
 }
 
-.header-title-container {
+.headerTitleContainer {
 	@extend %flex-start;
 }
-.history-go-back {
+.historyGoBack {
 	cursor: pointer;
 	padding: 0 20px;
 }

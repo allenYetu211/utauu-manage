@@ -1,10 +1,10 @@
 @import 'globals/asset/style/extendsFlex.scss';
 @import 'globals/asset/style/variable.scss';
-.route-content {
+.routeContent {
 	@extend %flex-center;
 }
 
-.route-side {
+.routeSide {
 	@extend %flex-start-center;
 	flex-direction: column;
 	width: 180px;
@@ -12,14 +12,14 @@
 	border-right: 1px solid $defaultLineColor;
 }
 
-.route-container {
+.routeContainer {
 	height: 100vh;
 	overflow-y: auto;
 	flex: 1;
 	// background-color:$contentBgColor;
 }
 
-.side-parent-container {
+.sideParentContainer {
 	width: 100%;
 	& > li {
 		height: 50px;
@@ -35,12 +35,12 @@
 	}
 }
 
-.side-child-container {
+.sideChildContainer {
 	display: none;
 	li {
 		padding-left: 15px;
 	}
-	&.side-child-show {
+	&.sideChildShow {
 		display: block;
 	}
 }

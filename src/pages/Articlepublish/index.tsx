@@ -20,7 +20,7 @@ export default class ArticlePublishPages extends React.Component<any, any> {
 	}
 
 	public async componentDidMount() {
-		const article = await getPublishClassArticle(true);
+		const article = await getPublishClassArticle();
 		this.setState({ article });
 	}
 

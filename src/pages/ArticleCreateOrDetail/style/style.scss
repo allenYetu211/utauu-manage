@@ -1,13 +1,13 @@
 @import 'globals/asset/style/extendsFlex.scss';
 @import 'globals/asset/style/variable.scss';
 
-.article-container {
+.articleContainer {
 	@extend %flex-center;
 	align-items: flex-start;
-	.edit-container {
+	.editContainer {
 		flex: 1;
 	}
-	.state-container {
+	.stateContainer {
 		width: 300px;
 		margin-left: 15px;
 	}

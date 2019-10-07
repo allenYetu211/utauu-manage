@@ -22,7 +22,7 @@ class HttpClient {
 		// todo 给出错误提示
 		this.axios.interceptors.response.use((response: AxiosResponse) => {
 			if (response.data.status === 'Success') {
-				return response.data.result;
+				return response.data.data;
 			}
 			return null;
 		});

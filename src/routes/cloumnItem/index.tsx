@@ -12,11 +12,6 @@ interface IProps {
 }
 
 const ColumnItemComponent = (props: IProps) => {
-	// onTargetLiClount = () => {
-	// 	const { onTargetLiClount, index } = props;
-	// 	onTargetLiClount(index);
-	// };
-
 	return (
 		<li
 			className={cn({
@@ -31,27 +26,3 @@ const ColumnItemComponent = (props: IProps) => {
 };
 
 export default ColumnItemComponent;
-
-// class ColumnItemComponent extends React.Component<IProps, any> {
-// 	constructor(props: IProps) {
-// 		super(props);
-// 		this.state = {
-// 			toggleState: false,
-// 		};
-// 	}
-
-// 	public onTargetLiClount = () => {
-// 		const { onTargetLiClount, index } = this.props;
-// 		onTargetLiClount(index);
-// 	};
-// 	public render() {
-// 		const { column, targetCount, index } = this.props;
-// 		return (
-// 			<li
-// 				className={cn(targetCount === index ? style.active : '')}
-// 				onClick={this.onTargetLiClount}>
-// 				<Link to={column.to}>{column.txt}</Link>
-// 			</li>
-// 		);
-// 	}
-// }

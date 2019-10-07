@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable react/no-access-state-in-setstate */
 /**

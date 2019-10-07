@@ -5,7 +5,7 @@
  * @file:    新建文章内容 、 编辑文章
  * @author:  Allen OYang https://github.com/allenYetu211
  */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import ContentHeaderComponent from 'globals/components/contentHeader';
@@ -16,7 +16,10 @@ import {
 	putEditArticle,
 	postCreateArticle,
 	getArticleDetail,
+	getTagsAll,
 } from 'globals/action/httpaction';
+
+import { Checkbox } from 'antd';
 
 import { observer, inject } from 'mobx-react';
 import { ITags, IArticle } from 'globals/interfaces/interface';
@@ -34,93 +37,94 @@ interface IState {
 	checked: boolean;
 }
 
-@inject('store')
-@observer
-class ArticleCreateOrDetailPage extends React.Component<any, IState> {
-	constructor(props: any) {
-		super(props);
-		this.state = {
-			title: '',
-			introduce: '',
-			markedContent: '', // 编辑状态初次渲染
-			content: '', // 文章编辑过程中存储
-			tags: [],
-			selected: [],
-			isEdit: false,
-			articleId: 0,
-			checked: false,
-		};
-	}
+const ArticleCreateOrDetailPage = (props: any) => {
+	const [title, setTitle] = useState<string>('');
+	const [introduce, setIntroduce] = useState<string>('');
+	const [markedContent, setMarkedContent] = useState<string>('');
+	const [content, setContent] = useState<string>('');
+	const [tags, setTags] = useState<ITags[]>([]);
+	const [selected, setSelected] = useState<number[]>([]);
+	const [isEdit, setIsEdit] = useState<boolean>(false);
+	const [checked, setChecked] = useState<boolean>(false);
+	const [articleId, setArticleId] = useState<number>(0);
 
-	public async componentDidMount() {
-		const { params } = this.props.match;
-		if (params.id) {
-			const articleResult = await getArticleDetail(params.id);
-			this.initHandleEditeArticle(articleResult, params.id);
-		}
-	}
-
-	// 处理编辑文章初始信息
-	public initHandleEditeArticle = (data: IArticle, id: number) => {
-		const { title, content, introduce, tags, publishState } = data;
-		const selected: number[] = [];
-		this.props.store.tags.forEach((item: ITags, index: number) => {
-			if (tags.includes(item.msg)) {
-				selected.push(index);
+	// 初始编辑信息
+	const initHandleEditeArticle = (
+		data: IArticle,
+		id: number,
+		tagResult: any,
+	) => {
+		console.log('tags::', tagResult);
+		const tSelected: number[] = [];
+		tagResult.forEach((item: any, index: number) => {
+			if (data.tags.includes(item.msg)) {
+				tSelected.push(index);
 			}
 		});
 
-		this.setState({
-			title,
-			introduce,
-			content,
-			markedContent: content,
-			selected,
-			articleId: id,
-			checked: publishState,
-			isEdit: true,
-		});
+		console.log('tSelected', tSelected);
+
+		setTitle(data.title);
+		setIntroduce(data.introduce);
+		setContent(data.content);
+		setMarkedContent(data.content);
+		setSelected(tSelected);
+		setArticleId(id);
+		setChecked(data.publishState);
+		setIsEdit(true);
+	};
+
+	//  获取详情
+	const initGetArticleDetail = async (id: number, tagResult: any) => {
+		const articleResult = await getArticleDetail(id);
+		initHandleEditeArticle(articleResult, id, tagResult);
+	};
+
+	// 获取全部标签
+	const initArticle = async () => {
+		const tagResult: any = await getTagsAll();
+		setTags(tagResult);
+		const { pathname } = props.location;
+		if (/ArticleDetail/.test(pathname)) {
+			const id = pathname.replace(/\/ArticleDetail\/(.\w)/g, '$1');
+			if (id) {
+				await initGetArticleDetail(id, tagResult);
+			}
+		}
 	};
 
 	// 处理标题
-	public onTitle = (e: any): void => {
-		this.setState({ title: e.target.value });
+	const onTitle = (e: any): void => {
+		setTitle(e.target.value);
+		// this.setState({ title: e.target.value });
 	};
 
 	// 处理简介
-	public onBriefintroduce = (e: any) => {
-		this.setState({ introduce: e.target.value });
+	const onBriefintroduce = (e: any) => {
+		setIntroduce(e.target.value);
+		// this.setState({ introduce: e.target.value });
 	};
 
 	// 处理tags
-	public onChangeSelected = (selecteds: number[]) => {
-		this.setState({ selected: selecteds });
+	const onChangeSelected = (selecteds: number[]) => {
+		setSelected(selecteds);
+		// this.setState({ selected: selecteds });
 	};
 
 	// 处理marked 内容
-	public onChangeMarkedContent = (content: string) => {
-		this.setState({ content });
+	const onChangeMarkedContent = (value: string) => {
+		setContent(content);
+		// this.setState({ content });
 	};
 
 	// 处理文章公布状态公用数据
-	public onPublishState = (e: any) => {
-		this.setState({ checked: e.target.checked });
+	const onPublishState = (e: any) => {
+		setChecked(e.target.checked);
+		// this.setState({ checked: e.target.checked });
 	};
 
 	// 处理内容内容
-	public onSaveSubmit = async () => {
-		const {
-			title,
-			introduce,
-			content,
-			selected,
-			isEdit,
-			articleId,
-			checked,
-		} = this.state;
-
-		const { tags } = this.props.store;
-
+	const onSaveSubmit = async () => {
 		const resultTags = selected.map((item: number) => tags[item].msg);
 
 		const submitData = {
@@ -138,94 +142,82 @@ class ArticleCreateOrDetailPage extends React.Component<any, IState> {
 			} else {
 				await postCreateArticle(submitData);
 			}
-			this.props.history.push('/article-all');
+			props.history.push('/ArticleAll');
 		} catch (e) {
 			console.log('创建文章存储失败::', e);
 		}
 	};
 
-	public render() {
-		const {
-			title,
-			introduce,
-			selected,
-			markedContent,
-			isEdit,
-			checked,
-		} = this.state;
+	useEffect(() => {
+		initArticle();
+	}, []);
 
-		const { tags } = this.props.store;
-		return (
-			<div>
-				<ContentHeaderComponent title={isEdit ? '编辑文章' : '新建文章'}>
-					<button type="button" onClick={this.onSaveSubmit}>
-						保存
-					</button>
-				</ContentHeaderComponent>
-				<div className={style.articleContainer}>
-					<div className={style.editContainer}>
-						<CardContainerComponent fullHv cardTitlt="基本信息">
-							<div className={style.basicsInfoContainer}>
-								<div>
-									<div className={style.labelItem}>
-										<span>文章标题</span>
-										<input
-											className="default__style"
-											value={title}
-											onChange={this.onTitle}
-											type="text"
-										/>
-									</div>
+	return (
+		<div>
+			<ContentHeaderComponent title={isEdit ? '编辑文章' : '新建文章'}>
+				<button type="button" onClick={onSaveSubmit}>
+					保存
+				</button>
+			</ContentHeaderComponent>
 
-									<div className={style.labelItemStart}>
-										<span>文章简介</span>
-										<textarea
-											className="default__style textarea__style"
-											value={introduce}
-											onChange={this.onBriefintroduce}
-										/>
-									</div>
-
-									<div className={style.labelItem}>
-										<span>文章标签</span>
-										<TagsComponent
-											onChangeSelected={this.onChangeSelected}
-											selected={selected}
-											tags={tags}
-										/>
-									</div>
+			<div className={style.articleContainer}>
+				<div className={style.editContainer}>
+					<CardContainerComponent fullHv cardTitlt="基本信息">
+						<div className={style.basicsInfoContainer}>
+							<div>
+								<div className={style.labelItem}>
+									<span>文章标题</span>
+									<input
+										className="default__style"
+										value={title}
+										onChange={onTitle}
+										type="text"
+									/>
 								</div>
-								<div>
-									<div className={style.labelItemStart}>
-										<span>文章内容</span>
-										<div className={style.itemContainer}>
-											<MarkDownComponent
-												markedContent={markedContent}
-												onChangeMarkedContent={this.onChangeMarkedContent}
-											/>
-										</div>
+
+								<div className={style.labelItemStart}>
+									<span>文章简介</span>
+									<textarea
+										className="default__style textarea__style"
+										value={introduce}
+										onChange={onBriefintroduce}
+									/>
+								</div>
+
+								<div className={style.labelItem}>
+									<span>文章标签</span>
+									<TagsComponent
+										onChangeSelected={onChangeSelected}
+										selected={selected}
+										tags={tags}
+									/>
+								</div>
+							</div>
+							<div>
+								<div className={style.labelItemStart}>
+									<span>文章内容</span>
+									<div className={style.itemContainer}>
+										<MarkDownComponent
+											markedContent={markedContent}
+											onChangeMarkedContent={onChangeMarkedContent}
+										/>
 									</div>
 								</div>
 							</div>
-						</CardContainerComponent>
-					</div>
+						</div>
+					</CardContainerComponent>
+				</div>
 
-					<div className={style.stateContainer}>
-						<CardContainerComponent cardTitlt="发布状态">
-							<label>
-								<span>公布</span>
-								<input
-									checked={checked}
-									onChange={this.onPublishState}
-									type="checkbox"
-								/>
-							</label>
-						</CardContainerComponent>
-					</div>
+				<div className={style.stateContainer}>
+					<CardContainerComponent cardTitlt="发布状态">
+						<Checkbox checked={checked} onChange={onPublishState}>
+							公布
+						</Checkbox>
+					</CardContainerComponent>
 				</div>
 			</div>
-		);
-	}
-}
+		</div>
+	);
+};
 
-export default withRouter(ArticleCreateOrDetailPage);
+export default ArticleCreateOrDetailPage;

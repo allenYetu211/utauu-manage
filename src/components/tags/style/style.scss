@@ -6,7 +6,7 @@
 	@extend %flex-start-center;
 }
 
-.tag-item {
+.tagItem {
 	padding: 3px 6px;
 	margin-right: 10px;
 	border-radius: 2px;
@@ -17,5 +17,16 @@
 	&.active,
 	&:hover {
 		background-color: $bgcolor5;
+		color: #333;
+	}
+}
+
+:global {
+	#root {
+		.ant-tag-checkable-checked,
+		.ant-tag-checkable:not(.ant-tag-checkable-checked):hover {
+			background-color: $bgcolor5;
+			color: #333;
+		}
 	}
 }
