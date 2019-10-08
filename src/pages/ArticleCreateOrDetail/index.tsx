@@ -19,11 +19,12 @@ import {
 	getTagsAll,
 } from 'globals/action/httpaction';
 
-import { Checkbox } from 'antd';
+import { Checkbox, Button, Card, Input } from 'antd';
 
-import { observer, inject } from 'mobx-react';
 import { ITags, IArticle } from 'globals/interfaces/interface';
 import style from './style/style.scss';
+
+const { TextArea } = Input;
 
 interface IState {
 	title: string;
@@ -154,34 +155,23 @@ const ArticleCreateOrDetailPage = (props: any) => {
 
 	return (
 		<div>
-			<ContentHeaderComponent title={isEdit ? '编辑文章' : '新建文章'}>
-				<button type="button" onClick={onSaveSubmit}>
-					保存
-				</button>
+			<ContentHeaderComponent>
+				<Button onClick={onSaveSubmit}>保存</Button>
 			</ContentHeaderComponent>
 
 			<div className={style.articleContainer}>
 				<div className={style.editContainer}>
-					<CardContainerComponent fullHv cardTitlt="基本信息">
+					<Card title="基本信息" bordered={false}>
 						<div className={style.basicsInfoContainer}>
 							<div>
 								<div className={style.labelItem}>
 									<span>文章标题</span>
-									<input
-										className="default__style"
-										value={title}
-										onChange={onTitle}
-										type="text"
-									/>
+									<Input value={title} onChange={onTitle} type="text" />
 								</div>
 
 								<div className={style.labelItemStart}>
 									<span>文章简介</span>
-									<textarea
-										className="default__style textarea__style"
-										value={introduce}
-										onChange={onBriefintroduce}
-									/>
+									<TextArea value={introduce} onChange={onBriefintroduce} />
 								</div>
 
 								<div className={style.labelItem}>
@@ -205,15 +195,15 @@ const ArticleCreateOrDetailPage = (props: any) => {
 								</div>
 							</div>
 						</div>
-					</CardContainerComponent>
+					</Card>
 				</div>
 
 				<div className={style.stateContainer}>
-					<CardContainerComponent cardTitlt="发布状态">
+					<Card title="发布状态" bordered={false}>
 						<Checkbox checked={checked} onChange={onPublishState}>
 							公布
 						</Checkbox>
-					</CardContainerComponent>
+					</Card>
 				</div>
 			</div>
 		</div>

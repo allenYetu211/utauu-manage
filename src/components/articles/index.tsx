@@ -8,6 +8,7 @@
 import React from 'react';
 import { IArticle } from 'globals/interfaces/interface';
 import { Link } from 'react-router-dom';
+import { Card } from 'antd';
 import style from './style/style.scss';
 
 interface IProps {
@@ -20,15 +21,11 @@ const ArticleContainer = (props: IProps) => {
 			{props.article.map((item: IArticle, key: number) => {
 				const skipPath = `/ArticleDetail/${item._id}`;
 				return (
-					<div className={style.articleItem} key={key}>
-						<h1 className={style.articleTitle}>
-							<Link to={skipPath}>{item.title}</Link>
-						</h1>
-
+					<Card title={<Link to={skipPath}>{item.title}</Link>}>
 						<div className={style.articleIntroduce}>
 							introduce {item.introduce}
 						</div>
-					</div>
+					</Card>
 				);
 			})}
 		</div>

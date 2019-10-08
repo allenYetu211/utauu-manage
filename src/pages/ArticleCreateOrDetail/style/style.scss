@@ -2,8 +2,10 @@
 @import 'globals/asset/style/variable.scss';
 
 .articleContainer {
-	@extend %flex-center;
-	align-items: flex-start;
+	display: grid;
+	grid-template-columns: 4fr 1fr;
+	// @extend %flex-center;
+	// align-items: flex-start;
 	.editContainer {
 		flex: 1;
 	}

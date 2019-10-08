@@ -7,3 +7,5 @@
 serviceWorker.ts
 config/*
 scripts
+
+config-overrides.js

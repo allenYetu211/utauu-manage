@@ -3,10 +3,11 @@
  * @author:  Allen OYang https://github.com/allenYetu211
  */
 import React from 'react';
+import { Icon } from 'antd';
 import style from './style/style.scss';
 
 interface IProps {
-	title: string;
+	title?: string;
 	hideGoBack?: boolean;
 }
 
@@ -26,7 +27,7 @@ export default class ContentHeaderComponent extends React.Component<
 				<div className={style.headerTitleContainer}>
 					{!hideGoBack && (
 						<div onClick={this.onHistoryGoBack} className={style.historyGoBack}>
-							返回
+							<Icon type="left" /> Go Back
 						</div>
 					)}
 					<h1>{title}</h1>

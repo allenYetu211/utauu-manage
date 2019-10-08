@@ -18,12 +18,11 @@ const HomePage = () => {
 			{/* <HeaderTpl /> */}
 			<Layout>
 				<Sider
-					className={style.sider}
 					trigger={null}
 					collapsible
 					// collapsed={collapsed}
 				>
-					<Menu mode="inline" theme="dark">
+					<Menu mode="inline">
 						<Menu.Item key="1">首页</Menu.Item>
 						<SubMenu
 							title={
@@ -50,8 +49,9 @@ const HomePage = () => {
 						</SubMenu>
 					</Menu>
 				</Sider>
+
 				<Layout>
-					<Content style={{ backgroundColor: '#323639', padding: '15px' }}>
+					<Content className={style.mainContent}>
 						<Switch>
 							{routerConfig.map((item: any) => {
 								return (

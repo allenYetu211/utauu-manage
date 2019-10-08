@@ -14,8 +14,11 @@ import 'codemirror/lib/codemirror.css';
 // @ts-ignore
 import hljs from 'highlightjs';
 import 'highlightjs/styles/ocean.css';
+import { Input } from 'antd';
 
 import style from './style/style.scss';
+
+const { TextArea } = Input;
 
 interface IProps {
 	onChangeMarkedContent: (content: string) => void;
@@ -203,7 +206,7 @@ export default class MarkDownComponent extends React.Component<IProps, IState> {
 
 				<div className={cn(style.markdownContainer)}>
 					<div>
-						<textarea id="editor" />
+						<TextArea id="editor" />
 					</div>
 
 					<div

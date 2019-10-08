@@ -14,14 +14,13 @@ interface IProps {
 	isHighlight?: boolean; // 是否选择单个
 	onChangeSelected: (value: number[]) => void;
 }
-export default class TagsComponents extends React.Component<IProps, any> {
-	// 检测是否存在 event:React.MouseEvent<HTMLElement>
-	public onChangeSelected = (index: number) => {
-		const { selected, onChangeSelected, isHighlight } = this.props;
-		if (isHighlight) {
-			onChangeSelected([index]);
+
+const TagsComponents = (props: IProps) => {
+	const onChangeSelected = (index: number) => {
+		if (props.isHighlight) {
+			props.onChangeSelected([index]);
 		} else {
-			const copySelected = selected.slice();
+			const copySelected = props.selected.slice();
 			const includes = copySelected.includes(index);
 
 			if (includes) {
@@ -32,27 +31,26 @@ export default class TagsComponents extends React.Component<IProps, any> {
 			} else {
 				copySelected.push(index);
 			}
-			onChangeSelected(copySelected);
+			props.onChangeSelected(copySelected);
 		}
 	};
 
-	public render() {
-		const { tags, selected } = this.props;
-		return (
-			<div className={style.itemContainer}>
-				{tags.map((item: ITags, key: number) => {
-					const isSelected = selected.includes(key);
-					return (
-						<TagItem
-							key={key}
-							index={key}
-							tag={item}
-							isSelected={isSelected}
-							onChangeSelected={this.onChangeSelected}
-						/>
-					);
-				})}
-			</div>
-		);
-	}
-}
+	return (
+		<div className={style.itemContainer}>
+			{props.tags.map((item: ITags, key: number) => {
+				const isSelected = props.selected.includes(key);
+				return (
+					<TagItem
+						key={key}
+						index={key}
+						tag={item}
+						isSelected={isSelected}
+						onChangeSelected={onChangeSelected}
+					/>
+				);
+			})}
+		</div>
+	);
+};
+
+export default TagsComponents;

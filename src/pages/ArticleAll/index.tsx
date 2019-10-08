@@ -9,6 +9,7 @@ import ArticleContainer from 'globals/components/articles';
 import { getArticleAll } from 'globals/action/httpaction';
 import { Link } from 'react-router-dom';
 import { IArticle } from 'globals/interfaces/interface';
+import { Button } from 'antd';
 
 interface IState {
 	article: IArticle[];
@@ -25,17 +26,13 @@ const ArticleAllPages = () => {
 
 	return (
 		<div>
-			<ContentHeaderComponent hideGoBack title="所有文章">
-				<button type="button">
+			<ContentHeaderComponent hideGoBack title="">
+				<Button>
 					<Link to="/ArticleCreate">新建文章</Link>
-				</button>
+				</Button>
 			</ContentHeaderComponent>
 
-			<div>
-				<CardContainerComponent>
-					<ArticleContainer article={article} />
-				</CardContainerComponent>
-			</div>
+			<ArticleContainer article={article} />
 		</div>
 	);
 };

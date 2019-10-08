@@ -3,6 +3,7 @@
  * @author:  Allen OYang https://github.com/allenYetu211
  */
 import React from 'react';
+import { Button } from 'antd';
 import style from './style/style.scss';
 
 interface IProps {
@@ -15,13 +16,13 @@ const FooterButtonComponent = (props: IProps) => {
 	return (
 		<div className={style.footerComponent}>
 			<div className={style.footerButtonComponent}>
-				<button type="button" onClick={props.ok}>
+				<Button type="primary" onClick={props.ok}>
 					{props.okText ? props.okText : '确认'}
-				</button>
+				</Button>
 				{props.cancel && (
-					<button type="button" onClick={props.cancel}>
+					<Button type="primary" onClick={props.cancel}>
 						取消
-					</button>
+					</Button>
 				)}
 			</div>
 		</div>

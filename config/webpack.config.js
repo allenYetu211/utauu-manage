@@ -86,6 +86,13 @@ module.exports = function(webpackEnv) {
 				options: cssOptions,
 			},
 			{
+				loader: require.resolve('less-loader'), // compiles Less to CSS
+				options: {
+					modifyVars: webpackConfig.modifyVars,
+					javascriptEnabled: true,
+				},
+			},
+			{
 				// Options for PostCSS as we reference these options twice
 				// Adds vendor prefixing based on your specified browser support in
 				// package.json
@@ -466,6 +473,27 @@ module.exports = function(webpackEnv) {
 								},
 								'sass-loader',
 							),
+						},
+						{
+							test: /\.less$/,
+							// include: paths.appNodeModules,
+							use: [
+								require.resolve('style-loader'),
+								{
+									loader: require.resolve('css-loader'),
+									options: {
+										importLoaders: 2,
+										modules: false,
+									},
+								},
+								{
+									loader: require.resolve('less-loader'),
+									options: {
+										modifyVars: webpackConfig.modifyVars,
+										javascriptEnabled: true,
+									},
+								},
+							],
 						},
 						// "file" loader makes sure those assets get served by WebpackDevServer.
 						// When you `import` an asset, you get its (virtual) filename.

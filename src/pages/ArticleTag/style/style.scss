@@ -1,6 +1,18 @@
 @import 'globals/asset/style/extendsFlex.scss';
 @import 'globals/asset/style/variable.scss';
 
+.tagCard {
+	// @extend %flex-center;
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: 1fr 1fr;
+	grid-row-gap: 10px;
+	grid-column-gap: 20px;
+	// & > div {
+	// 	flex: 1;
+	// 	align-items: stretch;
+	// }
+}
 .tags-component {
 	// margin-bottom: 20px;
 }

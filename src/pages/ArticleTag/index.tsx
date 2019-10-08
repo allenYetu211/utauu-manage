@@ -14,8 +14,8 @@ import {
 	deleteTag,
 	getTagsAll,
 } from 'globals/action/httpaction';
-import { Input, message } from 'antd';
-import { observer, inject } from 'mobx-react';
+
+import { Input, message, Card } from 'antd';
 
 import style from './style/style.scss';
 
@@ -91,35 +91,41 @@ export const ArticleTagPages = () => {
 	};
 
 	return (
-		<div>
-			<ContentHeaderComponent hideGoBack title="标签管理" />
+		<div className={style.tagCard}>
+			{/* <ContentHeaderComponent hideGoBack title="标签管理" /> */}
 
-			<div className={style.contentBottomMargin}>
-				<CardContainerComponent cardTitlt="全部">
-					<div className={style.contentBottomMargin}>
-						<TagsComponent
-							onChangeSelected={onChangeSelected}
-							selected={selected}
-							tags={tags}
-							isHighlight
-						/>
-					</div>
-					<FooterButttonComponent ok={onDeleteOkTag} okText="删除" />
-					{/* cancel={this.onDeleteCencelTag} */}
-				</CardContainerComponent>
-			</div>
-
-			<div>
-				<CardContainerComponent cardTitlt="新建标签">
-					<Input
-						value={tagMsg}
-						onChange={onChangeTagMsg}
-						placeholder="添加新标签"
+			{/* <div className={style.contentBottomMargin}> */}
+			{/* <CardContainerComponent cardTitlt="全部"> */}
+			<Card
+				title="全部标签"
+				extra={<FooterButttonComponent ok={onDeleteOkTag} okText="删除" />}>
+				<div className={style.contentBottomMargin}>
+					<TagsComponent
+						onChangeSelected={onChangeSelected}
+						selected={selected}
+						tags={tags}
+						isHighlight
 					/>
+				</div>
+				{/* cancel={this.onDeleteCencelTag} */}
+			</Card>
 
-					<FooterButttonComponent ok={onCreateTagOk} />
-				</CardContainerComponent>
-			</div>
+			{/* </CardContainerComponent> */}
+			{/* </div> */}
+
+			{/* <div> */}
+			{/* <CardContainerComponent cardTitlt="新建标签"> */}
+			<Card
+				title="新建标签"
+				extra={<FooterButttonComponent ok={onCreateTagOk} />}>
+				<Input
+					value={tagMsg}
+					onChange={onChangeTagMsg}
+					placeholder="添加新标签"
+				/>
+			</Card>
+			{/* </CardContainerComponent> */}
+			{/* </div> */}
 		</div>
 	);
 };

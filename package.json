@@ -1,8 +1,9 @@
 {
     "name": "utauu-admin",
     "version": "0.1.0",
-		"private": true,
+    "private": true,
     "dependencies": {
+        "@ant-design/dark-theme": "^1.0.3",
         "@babel/core": "7.4.3",
         "@babel/plugin-transform-react-jsx": "^7.3.0",
         "@babel/plugin-transform-react-jsx-source": "^7.2.0",
@@ -46,6 +47,8 @@
         "jest-environment-jsdom-fourteen": "0.1.0",
         "jest-resolve": "24.7.1",
         "jest-watch-typeahead": "0.3.0",
+        "less": "^3.10.3",
+        "less-loader": "^5.0.0",
         "lint-staged": "^8.2.1",
         "marked": "^0.7.0",
         "mini-css-extract-plugin": "0.5.0",
@@ -172,16 +175,16 @@
     "babel": {
         "presets": [
             "react-app"
-				],
-				"plugins": [
-					[
-						"import",
-						{
-							"libraryName": "antd",
-							"style": "css"
-						}
-					]
-				]
+        ],
+        "plugins": [
+            [
+                "import",
+                {
+                    "libraryName": "antd",
+                    "style": true
+                }
+            ]
+        ]
     },
     "homepage": ".",
     "devDependencies": {

@@ -2,8 +2,8 @@
 @import 'globals/asset/style/variable.scss';
 
 .itemContainer {
-	flex: 1;
-	@extend %flex-start-center;
+	// flex: 1;
+	// @extend %flex-start-center;
 }
 
 .tagItem {
@@ -14,19 +14,19 @@
 	color: #fff;
 	transition: all ease 0.3s;
 	cursor: pointer;
-	&.active,
-	&:hover {
-		background-color: $bgcolor5;
-		color: #333;
-	}
+	// &.active,
+	// &:hover {
+	// 	background-color: $bgcolor5;
+	// 	color: #333;
+	// }
 }
 
-:global {
-	#root {
-		.ant-tag-checkable-checked,
-		.ant-tag-checkable:not(.ant-tag-checkable-checked):hover {
-			background-color: $bgcolor5;
-			color: #333;
-		}
-	}
-}
+// :global {
+// 	#root {
+// 		.ant-tag-checkable-checked,
+// 		.ant-tag-checkable:not(.ant-tag-checkable-checked):hover {
+// 			background-color: $bgcolor5;
+// 			color: #333;
+// 		}
+// 	}
+// }
