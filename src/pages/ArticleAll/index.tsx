@@ -26,7 +26,7 @@ const ArticleAllPages = () => {
 
 	return (
 		<div>
-			<ContentHeaderComponent hideGoBack title="">
+			<ContentHeaderComponent hideGoBack title="所有文章">
 				<Button>
 					<Link to="/ArticleCreate">新建文章</Link>
 				</Button>

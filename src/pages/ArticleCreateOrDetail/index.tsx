@@ -6,11 +6,11 @@
  * @author:  Allen OYang https://github.com/allenYetu211
  */
 import React, { useEffect, useState } from 'react';
-import { withRouter } from 'react-router-dom';
 
 import ContentHeaderComponent from 'globals/components/contentHeader';
-import CardContainerComponent from 'globals/components/cardContainer';
-import MarkDownComponent from 'globals/components/markdown';
+// import MarkDownComponent from 'globals/components/markdown';
+import MKDownComponent from 'globals/components/mkdown';
+
 import TagsComponent from 'globals/components/tags';
 import {
 	putEditArticle,
@@ -55,15 +55,12 @@ const ArticleCreateOrDetailPage = (props: any) => {
 		id: number,
 		tagResult: any,
 	) => {
-		console.log('tags::', tagResult);
 		const tSelected: number[] = [];
 		tagResult.forEach((item: any, index: number) => {
 			if (data.tags.includes(item.msg)) {
 				tSelected.push(index);
 			}
 		});
-
-		console.log('tSelected', tSelected);
 
 		setTitle(data.title);
 		setIntroduce(data.introduce);
@@ -114,8 +111,8 @@ const ArticleCreateOrDetailPage = (props: any) => {
 
 	// 处理marked 内容
 	const onChangeMarkedContent = (value: string) => {
-		setContent(content);
-		// this.setState({ content });
+		setContent(value);
+		setMarkedContent(value);
 	};
 
 	// 处理文章公布状态公用数据
@@ -176,20 +173,26 @@ const ArticleCreateOrDetailPage = (props: any) => {
 
 								<div className={style.labelItem}>
 									<span>文章标签</span>
-									<TagsComponent
-										onChangeSelected={onChangeSelected}
-										selected={selected}
-										tags={tags}
-									/>
+									<div style={{ flex: 1 }}>
+										<TagsComponent
+											onChangeSelected={onChangeSelected}
+											selected={selected}
+											tags={tags}
+										/>
+									</div>
 								</div>
 							</div>
 							<div>
 								<div className={style.labelItemStart}>
 									<span>文章内容</span>
 									<div className={style.itemContainer}>
-										<MarkDownComponent
+										{/* <MarkDownComponent
 											markedContent={markedContent}
 											onChangeMarkedContent={onChangeMarkedContent}
+										/> */}
+										<MKDownComponent
+											value={markedContent}
+											mkChange={onChangeMarkedContent}
 										/>
 									</div>
 								</div>

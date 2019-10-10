@@ -27,16 +27,10 @@ export default class ArticlePublishPages extends React.Component<any, any> {
 	public render() {
 		const { article } = this.state;
 		return (
-			<div>
+			<>
 				<ContentHeaderComponent hideGoBack title="已发布文章" />
-				<div>
-					<CardContainerComponent>
-						<div>
-							<ArticleContainer article={article} />
-						</div>
-					</CardContainerComponent>
-				</div>
-			</div>
+				<ArticleContainer article={article} />
+			</>
 		);
 	}
 }

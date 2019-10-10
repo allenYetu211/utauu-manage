@@ -1,0 +1,11 @@
+.editor {
+	width: 100%;
+	:global {
+		.for-container {
+			background: #0d0d11;
+		}
+	}
+	textarea {
+		color: #fff;
+	}
+}

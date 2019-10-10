@@ -16,7 +16,7 @@ body {
 
 * {
 	box-sizing: border-box;
-	color: $defaultColor;
+	// color: $defaultColor;
 	&:focus {
 		outline: none;
 	}
@@ -67,5 +67,33 @@ body {
 	textarea.textarea__style {
 		height: 120px;
 		line-height: 20px;
+	}
+	#root {
+		.ant-layout-sider {
+			background: #24232e;
+		}
+		.ant-menu-submenu > .ant-menu {
+			background-color: #1a1921;
+		}
+		.ant-checkbox-checked .ant-checkbox-inner::after {
+			border-color: #e5e5e5;
+		}
+
+		.for-container {
+			border: none;
+		}
+		.for-container .for-editor .for-editor-edit .for-line-num {
+			background: #1a1921;
+			color: #fff;
+		}
+		.for-container .for-editor {
+			background: #1a1921;
+		}
+		.for-container .for-editor .for-panel .for-preview {
+			background: #1a1921;
+		}
+		.for-container .for-editor .for-panel.for-active .for-editor-block {
+			border-right: 1px solid #4b474e;
+		}
 	}
 }

@@ -91,137 +91,34 @@ export const ArticleTagPages = () => {
 	};
 
 	return (
-		<div className={style.tagCard}>
-			{/* <ContentHeaderComponent hideGoBack title="标签管理" /> */}
+		<>
+			<ContentHeaderComponent hideGoBack title="标签管理" />
+			<div className={style.tagCard}>
+				<Card
+					title="全部标签"
+					extra={<FooterButttonComponent ok={onDeleteOkTag} okText="删除" />}>
+					<div className={style.contentBottomMargin}>
+						<TagsComponent
+							onChangeSelected={onChangeSelected}
+							selected={selected}
+							tags={tags}
+							isHighlight
+						/>
+					</div>
+				</Card>
 
-			{/* <div className={style.contentBottomMargin}> */}
-			{/* <CardContainerComponent cardTitlt="全部"> */}
-			<Card
-				title="全部标签"
-				extra={<FooterButttonComponent ok={onDeleteOkTag} okText="删除" />}>
-				<div className={style.contentBottomMargin}>
-					<TagsComponent
-						onChangeSelected={onChangeSelected}
-						selected={selected}
-						tags={tags}
-						isHighlight
+				<Card
+					title="新建标签"
+					extra={<FooterButttonComponent ok={onCreateTagOk} />}>
+					<Input
+						value={tagMsg}
+						onChange={onChangeTagMsg}
+						placeholder="添加新标签"
 					/>
-				</div>
-				{/* cancel={this.onDeleteCencelTag} */}
-			</Card>
-
-			{/* </CardContainerComponent> */}
-			{/* </div> */}
-
-			{/* <div> */}
-			{/* <CardContainerComponent cardTitlt="新建标签"> */}
-			<Card
-				title="新建标签"
-				extra={<FooterButttonComponent ok={onCreateTagOk} />}>
-				<Input
-					value={tagMsg}
-					onChange={onChangeTagMsg}
-					placeholder="添加新标签"
-				/>
-			</Card>
-			{/* </CardContainerComponent> */}
-			{/* </div> */}
-		</div>
+				</Card>
+			</div>
+		</>
 	);
 };
 
 export default ArticleTagPages;
-
-// @inject('store')
-// @observer
-// export default class ArticleTagPages extends React.Component<any, IState> {
-// 	constructor(props: any) {
-// 		super(props);
-// 		this.state = {
-// 			selected: [],
-// 			tagType: '',
-// 			tagMsg: '',
-// 			tags: []
-// 		};
-// 	}
-
-// 	// 处理tags
-// 	public onChangeSelected = (selecteds: number[]) => {
-// 		this.setState({ selected: selecteds });
-// 	};
-
-// 	// 删除标签确认事件
-// 	public onDeleteOkTag = async () => {
-// 		const { selected } = this.state;
-// 		const { tags } = this.props.store;
-// 		if (selected.length < 0) {
-// 			return;
-// 		}
-// 		await deleteTag(tags[selected[0]]._id);
-// 		this.setState({ selected: [] });
-// 	};
-
-// 	// 删除标签取消事件
-// 	public onDeleteCencelTag = () => {
-// 		console.log('onDeleteCencelTag');
-// 	};
-
-// 	// 创建标签
-// 	public onCreateTagOk = async () => {
-// 		const { tagMsg } = this.state;
-// 		try {
-// 			await postCreateTag({ msg: tagMsg})
-// 			const tagResult: any = await getTagsAll()
-// 			this.setState({ tagMsg: '' , tags: tagResult});
-// 		} catch(e) {
-// 			console.log('Create Tags Error', e);
-// 		}
-// 	};
-
-// 	// // 新建标签类型
-// 	// public onChangeTagType = (e: any) => {
-// 	// 	this.setState({ tagMsg: e.target.value });
-// 	// };
-
-// 	// 新建标签描述
-// 	public onChangeTagMsg = (e: any) => {
-// 		this.setState({ tagMsg: e.target.value });
-// 	};
-
-// 	public render() {
-// 		const { selected, tagType, tagMsg } = this.state;
-// 		const { tags } = this.props.store;
-// 		return (
-// 			<div>
-// 				<ContentHeaderComponent hideGoBack title="标签管理" />
-
-// 				<div className={style.contentBottomMargin}>
-// 					<CardContainerComponent cardTitlt="全部">
-// 						<div className={style.contentBottomMargin}>
-// 							<TagsComponent
-// 								onChangeSelected={this.onChangeSelected}
-// 								selected={selected}
-// 								tags={this.state.tags}
-// 								isHighlight
-// 							/>
-// 						</div>
-// 						<FooterButttonComponent ok={this.onDeleteOkTag} />{' '}
-// 						{/* cancel={this.onDeleteCencelTag} */}
-// 					</CardContainerComponent>
-// 				</div>
-
-// 				<div>
-// 					<CardContainerComponent cardTitlt="新建标签">
-
-// 						<Input
-// 						 value={tagMsg}
-// 						 onChange={this.onChangeTagMsg}
-// 						 placeholder="添加新标签" />
-
-// 						<FooterButttonComponent ok={this.onCreateTagOk} />
-// 					</CardContainerComponent>
-// 				</div>
-// 			</div>
-// 		);
-// 	}
-// }

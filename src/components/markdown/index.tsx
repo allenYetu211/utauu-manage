@@ -125,7 +125,6 @@ export default class MarkDownComponent extends React.Component<IProps, IState> {
 	public getCursorLocation = () => {
 		const location = this.codemirror.getCursor('start');
 		const stat = this.codemirror.getTokenAt(location);
-		console.log('stat:::', stat);
 		return stat;
 	};
 

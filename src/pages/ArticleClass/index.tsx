@@ -9,7 +9,9 @@ import ArticleContainer from 'globals/components/articles';
 import TagsComponent from 'globals/components/tags';
 import { IArticle, ITags } from 'globals/interfaces/interface';
 import { getTagClassArticle, getTagsAll } from 'globals/action/httpaction';
-import { observer, inject } from 'mobx-react';
+import { Card } from 'antd';
+
+import style from './style/index.scss';
 
 interface IState {
 	article: IArticle[];
@@ -51,22 +53,18 @@ const ArticleClassPages = () => {
 		<div>
 			<ContentHeaderComponent hideGoBack title="分类文章" />
 
-			<div>
-				<CardContainerComponent>
-					<div>
-						<TagsComponent
-							onChangeSelected={onChangeSelected}
-							selected={selected}
-							tags={tags}
-							isHighlight
-						/>
-					</div>
-
-					<div>
-						<ArticleContainer article={article} />
-					</div>
-				</CardContainerComponent>
+			<div className={style.tagContainer}>
+				<Card bordered={false}>
+					<TagsComponent
+						onChangeSelected={onChangeSelected}
+						selected={selected}
+						tags={tags}
+						isHighlight
+					/>
+				</Card>
 			</div>
+
+			<ArticleContainer article={article} />
 		</div>
 	);
 };
