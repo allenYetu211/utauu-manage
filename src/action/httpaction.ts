@@ -1,16 +1,18 @@
+/* eslint-disable no-return-await */
 import HTTP_CLIENT from 'globals/http/index';
 import { ICreateArticle, ICreateTag } from 'globals/interfaces/http.interface';
 import store from 'globals/store';
+
 // 获取全部文章
-export const getArticleAll = () => {
-	return HTTP_CLIENT.get({ url: 'getArticle' });
+export const getArticleAll = async () => {
+	return await HTTP_CLIENT.get({ url: 'getArticle' });
 };
 
 // 获取分类标签
 export const getTagClassArticle = (tag: string) => {
 	return HTTP_CLIENT.get({
 		url: 'getTagClassArticle',
-		param: {
+		params: {
 			tags: tag,
 		},
 	});
@@ -41,7 +43,7 @@ export const putEditArticle = (data: ICreateArticle, id: number) => {
 	return HTTP_CLIENT.put({
 		url: `updateArticle`,
 		data,
-		param: {
+		params: {
 			articleID: id,
 		},
 	});
@@ -61,7 +63,7 @@ export const postCreateTag = async (data: ICreateTag) => {
 export const deleteTag = async (_id: number) => {
 	await HTTP_CLIENT.delete({
 		url: 'deleteTag',
-		param: {
+		params: {
 			tagID: _id,
 		},
 	});

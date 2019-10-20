@@ -1,18 +1,24 @@
 /* eslint-disable react/jsx-wrap-multilines */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Redirect, Link, Route } from 'react-router-dom';
 import { Menu, Layout, Icon } from 'antd';
 
 import PrivateRoute from 'globals/router/privateRoute';
 
+import action from 'globals/action';
+
 import { routerConfig } from './router';
-import { config } from './config';
+// import { config } from './config';
 import style from './style/index.scss';
 
 const { Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
 const HomePage = () => {
+	useEffect(() => {
+		action.initAction.checkoutToken();
+	}, []);
+
 	return (
 		<Layout style={{ height: '100vh' }}>
 			{/* <HeaderTpl /> */}

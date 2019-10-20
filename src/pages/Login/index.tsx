@@ -4,27 +4,53 @@
  * @module:  登录模块
  * @author:  Allen OYang https://github.com/allenYetu211
  */
-import React from 'react';
+import React, { useState } from 'react';
+import { Card, Input, Button } from 'antd';
+import action from 'globals/action';
+
 import style from './style/style.scss';
 
 const LoginPage = () => {
+	const [username, setUsername] = useState<string>('');
+	const [password, setPassword] = useState<string>('');
+
 	return (
 		<div className={style.loginContainer}>
-			<div className={style.dialogContainer}>
+			<Card title="UTAUU" bordered={false}>
 				<label className={style.dialogLine}>
 					<span>账号：</span>
-					<input type="text" />
+					<Input
+						value={username}
+						type="text"
+						onChange={(e) => {
+							setUsername(e.target.value);
+						}}
+					/>
 				</label>
 
 				<label className={style.dialogLine}>
 					<span>密码：</span>
-					<input type="passwod" />
+					<Input
+						value={password}
+						type="password"
+						onChange={(e) => {
+							setPassword(e.target.value);
+						}}
+					/>
 				</label>
 
-				<button type="button" className={style.loginButton}>
-					登录
-				</button>
-			</div>
+				<div className={style.loginButtonContainer}>
+					<Button
+						onClick={() => {
+							action.loginAction.userLogin({
+								username,
+								password,
+							});
+						}}>
+						登录
+					</Button>
+				</div>
+			</Card>
 		</div>
 	);
 };

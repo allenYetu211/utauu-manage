@@ -1,80 +1,78 @@
 import Axios, { AxiosInstance, AxiosResponse } from 'axios';
-/**
- * @file:
- * @module: http模块拦截
- * @author:  Allen OYang https://github.com/allenYetu211
- */
-import { config } from 'globals/config';
-import { IConfigOrigin, IGetParams } from 'globals/interfaces/http.interface';
 
+import { userStore } from 'globals/store/userStore';
+
+import { baseURL } from 'globals/config';
+
+// import { IConfigOrigin, IGetParams } from 'globals/interfaces/http.interface';
+
+interface HTTPPARAMS {
+	url: string;
+	data?: any;
+	params?: any;
+}
+
+export type Method =
+	| 'get'
+	| 'GET'
+	| 'delete'
+	| 'DELETE'
+	| 'head'
+	| 'HEAD'
+	| 'options'
+	| 'OPTIONS'
+	| 'post'
+	| 'POST'
+	| 'put'
+	| 'PUT'
+	| 'patch'
+	| 'PATCH';
 class HttpClient {
-	public axios: AxiosInstance;
+	public axios: any;
 
-	public origin: string;
-
-	constructor(readonly configOrigin: IConfigOrigin) {
-		this.origin = configOrigin.origin;
+	constructor() {
 		this.axios = Axios.create({
 			timeout: 10000,
 		});
 
-		// 拦截处理返回内容
-		// todo 给出错误提示
 		this.axios.interceptors.response.use((response: AxiosResponse) => {
 			if (response.data.status === 'Success') {
 				return response.data.data;
 			}
-			return null;
+			return response.status;
 		});
 	}
 
-	public async get(param: IGetParams): Promise<any> {
-		return this.AXIOS_REQUEST('GET', param);
+	public async get(param: HTTPPARAMS) {
+		return this.AXIOSHTTP('GET', param);
 	}
 
-	public async post(param: IGetParams): Promise<any> {
-		return this.AXIOS_REQUEST('POST', param);
+	public async post(param: HTTPPARAMS) {
+		return this.AXIOSHTTP('POST', param);
 	}
 
-	public async put(param: IGetParams): Promise<any> {
-		return this.AXIOS_REQUEST('PUT', param);
+	public async put(param: HTTPPARAMS) {
+		return this.AXIOSHTTP('PUT', param);
 	}
 
-	public async delete(param: IGetParams): Promise<any> {
-		return this.AXIOS_REQUEST('DELETE', param);
+	public async delete(param: HTTPPARAMS) {
+		return this.AXIOSHTTP('DELETE', param);
 	}
 
-	public async AXIOS_REQUEST(
-		method:
-			| 'get'
-			| 'GET'
-			| 'delete'
-			| 'DELETE'
-			| 'head'
-			| 'HEAD'
-			| 'options'
-			| 'OPTIONS'
-			| 'post'
-			| 'POST'
-			| 'put'
-			| 'PUT'
-			| 'patch'
-			| 'PATCH'
-			| undefined,
-		param: IGetParams,
-	): Promise<any> {
+	private async AXIOSHTTP(method: Method, h: HTTPPARAMS): Promise<any> {
+		const { url, params, data } = h;
 		return this.axios({
-			baseURL: this.origin,
-			url: param.url,
+			baseURL,
+			url,
 			method,
-			params: {
-				...param.param,
+			params,
+			data,
+			headers: {
+				authorization: userStore.token,
 			},
-			data: {
-				...param.data,
-			},
+			// withCredentials: true,
 		});
 	}
 }
 
-export default new HttpClient(config);
+export default new HttpClient();
