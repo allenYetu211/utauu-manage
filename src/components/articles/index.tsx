@@ -22,9 +22,7 @@ const ArticleContainer = (props: IProps) => {
 				const skipPath = `/ArticleDetail/${item._id}`;
 				return (
 					<Card title={<Link to={skipPath}>{item.title}</Link>}>
-						<div className={style.articleIntroduce}>
-							introduce {item.introduce}
-						</div>
+						<div className={style.articleIntroduce}>{item.introduce}</div>
 					</Card>
 				);
 			})}
