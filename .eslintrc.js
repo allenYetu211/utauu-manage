@@ -24,6 +24,7 @@ module.exports = {
 	plugins: ['react', 'react-hooks', 'promise', 'prettier', 'babel'],
 	rules: {
 		quotes: ['error', 'single', { allowTemplateLiterals: true }],
+		'react/jsx-wrap-multilines': 0,
 		'import/no-unresolved': 'off',
 		'react/jsx-filename-extension': 'off',
 		'arrow-body-style': 'off',

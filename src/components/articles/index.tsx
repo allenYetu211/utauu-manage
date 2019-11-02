@@ -26,9 +26,9 @@ const ArticleContainer = (props: IProps) => {
 					<Card
 						title={<Link to={skipPath}>{item.title}</Link>}
 						extra={
-							<>
+							<div>
 								创建时间：{dayjs(item.createTime).format('YYYY-MM-DD hh:mm:ss')}
-							</>
+							</div>
 						}>
 						<div className={style.articleIntroduce}>{item.introduce}</div>
 					</Card>
