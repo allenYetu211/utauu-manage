@@ -4,6 +4,10 @@ import { userStore } from 'globals/store/userStore';
 
 import { baseURL } from 'globals/config';
 
+import { createHashHistory } from 'history';
+
+const history = createHashHistory();
+
 // import { IConfigOrigin, IGetParams } from 'globals/interfaces/http.interface';
 
 interface HTTPPARAMS {
@@ -36,6 +40,10 @@ class HttpClient {
 		});
 
 		this.axios.interceptors.response.use((response: AxiosResponse) => {
+			if (response.status === 415) {
+				history.push('/Login');
+			}
+
 			if (response.data.status === 'Success') {
 				return response.data.data;
 			}

@@ -5,6 +5,7 @@ interface IMate {
 }
 export interface IArticle {
 	readonly title: string;
+	readonly createTime: string;
 	readonly tags: string[];
 	readonly introduce: string;
 	readonly content: string;

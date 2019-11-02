@@ -68,3 +68,12 @@ export const deleteTag = async (_id: number) => {
 		},
 	});
 };
+
+export const deleteArticle = async (_id: number) => {
+	await HTTP_CLIENT.delete({
+		url: 'deleteArticle',
+		params: {
+			articleId: _id,
+		},
+	});
+};

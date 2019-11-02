@@ -17,14 +17,22 @@ import {
 	postCreateArticle,
 	getArticleDetail,
 	getTagsAll,
+	deleteArticle,
 } from 'globals/action/httpaction';
 
-import { Checkbox, Button, Card, Input } from 'antd';
+import { Checkbox, Button, Card, Input, message, Modal, Divider } from 'antd';
 
 import { ITags, IArticle } from 'globals/interfaces/interface';
+
+import { createHashHistory } from 'history';
+
 import style from './style/style.scss';
 
+const history = createHashHistory();
+
 const { TextArea } = Input;
+
+const { confirm } = Modal;
 
 interface IState {
 	title: string;
@@ -94,19 +102,16 @@ const ArticleCreateOrDetailPage = (props: any) => {
 	// 处理标题
 	const onTitle = (e: any): void => {
 		setTitle(e.target.value);
-		// this.setState({ title: e.target.value });
 	};
 
 	// 处理简介
 	const onBriefintroduce = (e: any) => {
 		setIntroduce(e.target.value);
-		// this.setState({ introduce: e.target.value });
 	};
 
 	// 处理tags
 	const onChangeSelected = (selecteds: number[]) => {
 		setSelected(selecteds);
-		// this.setState({ selected: selecteds });
 	};
 
 	// 处理marked 内容
@@ -118,7 +123,31 @@ const ArticleCreateOrDetailPage = (props: any) => {
 	// 处理文章公布状态公用数据
 	const onPublishState = (e: any) => {
 		setChecked(e.target.checked);
-		// this.setState({ checked: e.target.checked });
+	};
+
+	const actionDeleteArtice = async () => {
+		confirm({
+			title: `确认删除？`,
+			content: (
+				<div>
+					<h1>{title}</h1>
+					<p>状态 {checked ? '公布' : '未公布'}</p>
+				</div>
+			),
+			okText: '确认',
+			cancelText: '取消',
+			onOk: async () => {
+				try {
+					await deleteArticle(articleId);
+					history.push('/ArticleAll');
+				} catch (e) {
+					message.error('删除失败');
+				}
+			},
+			onCancel() {
+				console.log('Cancel');
+			},
+		});
 	};
 
 	// 处理内容内容
@@ -142,6 +171,7 @@ const ArticleCreateOrDetailPage = (props: any) => {
 			}
 			props.history.push('/ArticleAll');
 		} catch (e) {
+			message.error('保存失败');
 			console.log('创建文章存储失败::', e);
 		}
 	};
@@ -153,6 +183,11 @@ const ArticleCreateOrDetailPage = (props: any) => {
 	return (
 		<div>
 			<ContentHeaderComponent>
+				{isEdit && (
+					<Button style={{ marginRight: '10px' }} onClick={actionDeleteArtice}>
+						删除
+					</Button>
+				)}
 				<Button onClick={onSaveSubmit}>保存</Button>
 			</ContentHeaderComponent>
 
