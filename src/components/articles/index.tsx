@@ -14,6 +14,7 @@ import style from './style/style.scss';
 
 interface IProps {
 	article: IArticle[];
+	hideTags?: boolean;
 }
 
 const ArticleContainer = (props: IProps) => {
@@ -32,13 +33,14 @@ const ArticleContainer = (props: IProps) => {
 									{dayjs(item.createTime).format('YYYY-MM-DD hh:mm:ss')}
 								</p>
 								<div>
-									{item.tags.map((tagItem: string) => {
-										return (
-											<Tag color="#444457" key={item._id}>
-												{tagItem}
-											</Tag>
-										);
-									})}
+									{!props.hideTags &&
+										item.tags.map((tagItem: string) => {
+											return (
+												<Tag color="#444457" key={item._id}>
+													{tagItem}
+												</Tag>
+											);
+										})}
 								</div>
 							</div>
 						}>

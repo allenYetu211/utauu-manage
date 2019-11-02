@@ -65,7 +65,7 @@ const ArticleClassPages = () => {
 				</Card>
 			</div>
 
-			<ArticleContainer article={article} />
+			<ArticleContainer hideTags article={article} />
 		</div>
 	);
 };
