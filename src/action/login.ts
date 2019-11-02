@@ -15,6 +15,7 @@ interface UserInfo {
 const errorCodeInfo: any = {
 	403: '请填写用户信息',
 	404: '账号密码错误',
+	400: '账号密码错误',
 };
 
 class LoginAction {
