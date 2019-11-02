@@ -8,7 +8,7 @@
 import React from 'react';
 import { IArticle } from 'globals/interfaces/interface';
 import { Link } from 'react-router-dom';
-import { Card } from 'antd';
+import { Card, Tag } from 'antd';
 import dayjs from 'dayjs';
 import style from './style/style.scss';
 
@@ -26,8 +26,20 @@ const ArticleContainer = (props: IProps) => {
 					<Card
 						title={<Link to={skipPath}>{item.title}</Link>}
 						extra={
-							<div>
-								创建时间：{dayjs(item.createTime).format('YYYY-MM-DD hh:mm:ss')}
+							<div className={style.extraContainer}>
+								<p>
+									创建时间：
+									{dayjs(item.createTime).format('YYYY-MM-DD hh:mm:ss')}
+								</p>
+								<div>
+									{item.tags.map((tagItem: string) => {
+										return (
+											<Tag color="#444457" key={item._id}>
+												{tagItem}
+											</Tag>
+										);
+									})}
+								</div>
 							</div>
 						}>
 						<div className={style.articleIntroduce}>{item.introduce}</div>
