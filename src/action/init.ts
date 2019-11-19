@@ -32,9 +32,16 @@ class LoginAction {
 
 		try {
 			await HTTP_CLIENT.get({
-				url: '/checkToken',
+				url: '/admin/checkToken',
 			});
 		} catch (e) {
+			console.log('e.response.status ', e);
+			if (!e.response) {
+				message.error('异常错误');
+				history.push('/Login');
+				return;
+			}
+
 			if (e.response.status === 415) {
 				message.error('用户登录已过期');
 				history.push('/Login');

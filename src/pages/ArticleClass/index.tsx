@@ -28,7 +28,9 @@ const ArticleClassPages = () => {
 	const getTagsAllFc = async () => {
 		const tagResult: any = await getTagsAll();
 		setTags(tagResult);
-		getTagClassArticleInfo(tagResult[0].msg);
+		if (tagResult.length > 0) {
+			getTagClassArticleInfo(tagResult[0].msg);
+		}
 	};
 
 	//  根据标签获取新数据

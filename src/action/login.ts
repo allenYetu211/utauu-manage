@@ -22,7 +22,7 @@ class LoginAction {
 	public userLogin = async (userInfo: UserInfo) => {
 		try {
 			const result = await HTTP_CLIENT.post({
-				url: '/login',
+				url: '/admin/login',
 				data: userInfo,
 			});
 
@@ -32,6 +32,10 @@ class LoginAction {
 
 			history.push('/ArticleAll');
 		} catch (e) {
+			if (!e.response) {
+				message.error('未知错误');
+				return;
+			}
 			message.error(errorCodeInfo[e.response.status] || '未知错误');
 		}
 	};
