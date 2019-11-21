@@ -103,10 +103,13 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "npm run lint-staged",
-            "commit-msg": "validate-commit-msg"
+            "pre-commit": "npm run lint-staged"
         }
-    },
+		},
+		"hooksOLD": {
+			"pre-commit": "npm run lint-staged",
+			"commit-msg": "validate-commit-msg"
+	},
     "lint-staged": {
         "**/*.{js,jsx,json,ts,tsx,scss,sass,css,md}": [
             "prettier --write",
