@@ -32,7 +32,7 @@ class LoginAction {
 
 		try {
 			await HTTP_CLIENT.get({
-				url: '/admin/checkToken',
+				url: 'u/v/admin/checkToken',
 			});
 		} catch (e) {
 			console.log('e.response.status ', e);

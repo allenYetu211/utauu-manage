@@ -24,3 +24,7 @@ yarn-error.log*
 
 release.tgz
 updata.sh
+.oss-config.yml
+
+start.js
+dist

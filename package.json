@@ -2,6 +2,22 @@
     "name": "utauu-admin",
     "version": "0.1.0",
     "private": true,
+    "main": "./start.js",
+		"build": {
+			"directories": {
+				"buildResources": "build"
+			},
+			"mac": {
+				"icon": "build/u-icon.png"
+			},
+			"files": [
+				"scripts/",
+				"node_modules/",
+				"build/",
+				"!node_modules/.cache/",
+				"!**/*.map"
+			]
+		},
     "dependencies": {
         "@ant-design/dark-theme": "^1.0.3",
         "@babel/core": "7.4.3",
@@ -36,6 +52,8 @@
         "dayjs": "^1.8.16",
         "dotenv": "6.2.0",
         "dotenv-expand": "4.2.0",
+        "electron-is-dev": "^1.1.0",
+        "electron-reload": "^1.5.0",
         "file-loader": "3.0.1",
         "for-editor": "^0.3.4",
         "fs-extra": "7.0.1",
@@ -91,9 +109,10 @@
         "node-sass": "npm:sass"
     },
     "scripts": {
+        "electron": "electron .",
+        "electron-o-build": "electron-builder",
+        "electron-build": "node scripts/build.js && electron-builder",
         "start": "cross-env REACT_APP_PROXY_ENV=dev node scripts/start.js",
-        "start:pre": "cross-env REACT_APP_PROXY_ENV=pre node scripts/start.js",
-        "start:private": "cross-env  REACT_APP_PROXY_ENV=private REACT_APP_PROXY_IP=http://172.18.224.253:80s  node scripts/start.js",
         "build": "node scripts/build.js",
         "test": "node scripts/test.js",
         "lint-staged": "lint-staged",
@@ -105,11 +124,11 @@
         "hooks": {
             "pre-commit": "npm run lint-staged"
         }
-		},
-		"hooksOLD": {
-			"pre-commit": "npm run lint-staged",
-			"commit-msg": "validate-commit-msg"
-	},
+    },
+    "hooksOLD": {
+        "pre-commit": "npm run lint-staged",
+        "commit-msg": "validate-commit-msg"
+    },
     "lint-staged": {
         "**/*.{js,jsx,json,ts,tsx,scss,sass,css,md}": [
             "prettier --write",
@@ -193,6 +212,10 @@
     },
     "homepage": ".",
     "devDependencies": {
+				"ali-oss-folder": "^1.0.5",
+        "electron-builder": "^22.1.0",
+        "electron": "6.0.12",
+        "electron-packager": "^14.1.1",
         "eslint": "^6.0.1",
         "eslint-config-airbnb": "^17.1.1",
         "eslint-config-prettier": "^6.0.0",

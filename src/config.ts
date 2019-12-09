@@ -3,8 +3,8 @@
 // };
 
 const setting = {
-	prd: 'http://39.106.173.13',
-	local: '//localhost:7001/',
+	prd: 'https://www.utauu.com/',
+	local: 'http://localhost:7001/',
 };
 
 // @ts-ignore 请求地址

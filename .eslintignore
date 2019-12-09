@@ -9,3 +9,6 @@ config/*
 scripts
 
 config-overrides.js
+
+
+start.js

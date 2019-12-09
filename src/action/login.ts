@@ -22,7 +22,7 @@ class LoginAction {
 	public userLogin = async (userInfo: UserInfo) => {
 		try {
 			const result = await HTTP_CLIENT.post({
-				url: '/admin/login',
+				url: 'u/v/admin/login',
 				data: userInfo,
 			});
 

@@ -29,11 +29,16 @@
 	textarea,
 	.itemContainer {
 		flex: 1;
+		color: #fff;
 	}
 }
 
 .itemContainer {
 	@extend %flex-start-center;
+
+	p {
+		color: #fff;
+	}
 }
 
 .labelItemStart {

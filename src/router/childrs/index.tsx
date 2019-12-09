@@ -28,7 +28,7 @@ const HomePage = () => {
 					collapsible
 					// collapsed={collapsed}
 				>
-					<Menu mode="inline">
+					<Menu style={{ paddingTop: '20px' }} mode="inline">
 						<Menu.Item key="1">首页</Menu.Item>
 						<SubMenu
 							title={
