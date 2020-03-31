@@ -8,6 +8,6 @@ const setting = {
 };
 
 // @ts-ignore 请求地址
-const baseURL = setting[process.env.REACT_APP_BUILD_ENV] || setting.prd;
+const baseURL = setting[process.env.REACT_APP_BUILD_ENV] || setting.local;
 
 export { baseURL };

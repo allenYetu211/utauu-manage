@@ -20,7 +20,7 @@ import {
 	deleteArticle,
 } from 'globals/action/httpaction';
 
-import { Checkbox, Button, Card, Input, message, Modal, Divider } from 'antd';
+import { Checkbox, Button, Card, Input, message, Modal, Upload } from 'antd';
 
 import { ITags, IArticle } from 'globals/interfaces/interface';
 
@@ -237,11 +237,29 @@ const ArticleCreateOrDetailPage = (props: any) => {
 				</div>
 
 				<div className={style.stateContainer}>
-					<Card title="发布状态" bordered={false}>
-						<Checkbox checked={checked} onChange={onPublishState}>
-							公布
-						</Checkbox>
-					</Card>
+					<div className={style.item}>
+						<Card title="发布状态" bordered={false}>
+							<Checkbox checked={checked} onChange={onPublishState}>
+								公布
+							</Checkbox>
+						</Card>
+					</div>
+
+					<div className={style.item}>
+						{/* <Card title="封面图" bordered={false}>
+							<Upload
+								name="avatar"
+								listType="picture-card"
+								className="avatar-uploader"
+								showUploadList={false}
+								action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+								beforeUpload={beforeUpload}
+								onChange={this.handleChange}
+							>
+							{imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+							</Upload>
+						</Card> */}
+					</div>
 				</div>
 			</div>
 		</div>
